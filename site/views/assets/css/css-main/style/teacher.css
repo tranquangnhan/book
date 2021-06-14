@@ -1,0 +1,36 @@
+.option-item {
+    display: none;
+}
+
+.option-item.active {
+    display: block;
+}
+
+.control-active {
+    display: block;
+}
+
+.show-option {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.show-option.option-active {
+    background: #4986fc !important;
+    border: 1px solid #4986fc !important;
+    color: #fff !important;
+}
+
+.btn:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.bg-size-100 {
+    background-size: 100%;
+}
+
+.pd-1em {
+    padding: 1em;
+}

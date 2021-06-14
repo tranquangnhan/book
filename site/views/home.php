@@ -1,950 +1,445 @@
-<aside id="notifications">
-    <div class="container">
 
+    <div class="hero-wrap js-fullheight">
+        <div class="overlay"></div>
 
-
-    </div>
-</aside>
-
-<div class="container">
-    <div class="row ">
-        
-        <div class="col-md-3" id="danhmucdoc">
-            <div class="card" style="width: 100%;">
-                <div class="card-header" style="background-color: var(--it-brand-primary); color: white;">
-                    SẢN PHẨM
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" data-interval="ride">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="/book/site/views/assets/images/bg-header-1.JPG" alt="First slide">
                 </div>
-                <ul class="list-group list-group-flush">
-                    <?php
-                        foreach ($getMenuParentdoc as $row) {
-                            echo '<li class="list-group-item">
-                            <a href="#">'.$row['name'].'
-                                
-                            </a>';
-                            $getMenuchilddoc = $this->model->showDmCondoc($row['id']);
-                            if($getMenuchilddoc){
-                                echo '<div class="pro_already">
-                                <ul>';
-                                foreach ($getMenuchilddoc as $row) {
-                                    $link = ROOT_URL."/hang/".$row['slug']."-".$row['hangcosan']."/trang-1";
-                                    echo '<li><a href="'.$link.'">'.$row['name'].'</a>';
-                                    // show danh mục con cấp 3
-                                    $getMenuchilddoc1 = $this->model->showDmCondoc($row['id']);
-                                    if($getMenuchilddoc1){
-                                        echo '<div class="pro_already1">
-                                        <ul>';
-                                        foreach ($getMenuchilddoc1 as $row) {
-                                            $link = ROOT_URL."/hang/".$row['slug']."-".$row['hangcosan']."/trang-1";
-                                            echo '<li><a href="'.$link.'">'.$row['name'].'</a>';
-                                                 // show sản phẩm của danh mục
-                                                $probybrand = $this->model->getProByBrand($row['slug'].'-'.$row['hangcosan'],$row['hangcosan']);
-                                                if($probybrand){
-                                                    echo '<div class="pro_already2">
-                                                    <ul>';
-                                                    foreach ($probybrand as $row) {
-                                                        $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                                                        echo '<li><a href="'.$link.'">'.$row['name'].'</a></li>';
-                                                    }
-                                                    echo '</ul></div>';
-                                                }
-                                            echo '</li>';
-                                        }
-                                        echo '</ul></div>';
-                                    }
-                                    
-                                   
-                                    echo '</li>';
-                                }
-                                echo '</ul></div>';
-                            }
-                            echo ' </li>';
-                        }
-                    ?>
-                    
-                </ul>
-                
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/book/site/views/assets/images/bg-header-2.JPG" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/book/site/views/assets/images/bg-header-3.JPG" alt="Third slide">
+                </div>
             </div>
-            
-        </div>
-        
-        <div class="col-md-9 ">
-        <div id="top_column">
-    <div class="kkimgslider clearfix ">
-        <div class="flexslider" data-interval="5000" data-pause="hover">
-            <ul class="slides">
-                <li class="slide">
-
-                    <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1"
-                        title="kslider-1">
-                        <img src="<?=PATH_IMG_SITE.$banner[0]['bannerImage']?>" alt="kslider-1" title="KSlider1" />
-                    </a>
-
-                </li>
-                <li class="slide">
-
-                    <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1"
-                        title="kslider-2">
-                        <img src="<?=PATH_IMG_SITE.$banner[1]['bannerImage']?>" alt="kslider-2" title="KSlider2" />
-                    </a>
-
-                </li>
-                <li class="slide">
-                    <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1"
-                        title="kslider-3">
-                        <img src="<?=PATH_IMG_SITE.$banner[2]['bannerImage']?>" alt="kslider-3" title="KSlider3" />
-                    </a>
-                </li>
-             
-            </ul>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
-</div>
-        </div>
     </div>
-</div>
-<div id="Home_top">
-    <div class="container">
-        <div class="kk_banner hb-animate-element  bottom-to-top clearfix ">
-            <div class="row">
-                <div class="center-banner list-unstyled">
-                    <div class="slider banner2 col-lg-4 col-md-12">
-                        <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1" class="kk-customhover-fadeintopbottom">
-                            <img src="<?=PATH_IMG_SITE.$banner[3]['bannerImage']?>" alt="kbanner-1"
-                                class="img-responsive center-block" />
-                        </a>
-                        <div class="overlay"></div>
-                    </div>
 
-                    <div class="slider banner2  col-lg-4 col-md-12">
-                        <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1" class="kk-customhover-fadeintopbottom">
-                            <img src="<?=PATH_IMG_SITE.$banner[4]['bannerImage']?>" alt="kbanner-2"
-                                class="img-responsive center-block" />
-                        </a>
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="slider banner2  col-lg-4 col-md-12">
-                        <a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1" class="kk-customhover-fadeintopbottom">
-                            <img src="<?=PATH_IMG_SITE.$banner[5]['bannerImage']?>" alt="kbanner-3"
-                                class="img-responsive center-block" />
-                        </a>
-                        <div class="overlay"></div>
+    <section id="about" class="about my-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-4 col-lg-4 text-center">
+                    <div class="card mr-0-auto w-100">
+                        <div class="icon-top">
+                            <i class="fa fa-graduation-cap icon-top-i-first" aria-hidden="true"></i>
+                            <!-- <img src="images/logo-main-cat-2.png" alt="" class="img-fluid"> -->
+                        </div>
+                        <div class="card-body p-1p4rem">
+                            <h5 class="card-title icon-top-i-first text-uppercase title-3">NỘI DUNG ĐA DẠNG <br> CHUẨN
+                                XÁC</h5>
+                            <p class="card-text font-size-1em about-describe">Đội ngũ tác giả uy tín của Việt Nam hợp tác với các nhà xuất bản tổ
+                                chức giáo dục quốc tế.</p>
+                        </div>
                     </div>
                 </div>
+                <div class="col-4 col-lg-4 text-center">
+                    <div class="card mr-0-auto w-100">
+                        <div class="icon-top">
+                            <i class="fa fa-book icon-top-i-seccond" aria-hidden="true"></i>
+                            <!-- <img src="images/logo-main-cat-1.png" alt="" class="img-fluid"> -->
+                        </div>
+                        <div class="card-body p-1p4rem ">
+                            <h5 class="card-title icon-top-i-seccond text-uppercase title-3">Hỗ trợ tối đa <br> việc dạy
+                                và
+                                học</h5>
+                            <p class="card-text font-size-1em about-describe">Hỗ trợ toàn diện và hữu ích, bao gồm các khóa tập huấn offline và
+                                online, hệ thống học liệu điện tử và phần mềm hỗ trợ giảng dậy, các kênh tham khảo và
+                                tương tác đa dạng.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-lg-4 mr-0-auto text-center">
+                    <div class="card mr-0-auto w-100">
+                        <div class="icon-top">
+                            <i class="fa fa-leanpub icon-top-i-thirt" aria-hidden="true"></i>
+                            <!-- <img src="images/logo-main-cat-3.png" alt="" class="img-fluid"> -->
+                        </div>
+                        <div class="card-body p-1p4rem">
+                            <h5 class="card-title icon-top-i-thirt text-uppercase title-3">HỆ SINH THÁI <br> ĐA DẠNG PHONG
+                                PHÚ</h5>
+                            <p class="card-text font-size-1em about-describe">Sách giáo khoa, sách tham khảo bổ trợ. Kho tài nguyên học liệu điện tử
+                                thường xuyên được cập nhật; Trung tâm ngoại ngữ GLOBAL SUCCESS.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div id="kkproductsblock" class="clearfix hb-animate-element bottom-to-top">
-            <div class="kkproductsblock-container">
-                <div class="producttab">
-                    <h2 class="kk-title">Sản phẩm hot</h2>
-
-                    <ul id="kkproductstab" class="nav nav-tabs clearfix">
-                        <li class="nav-item first_item">
-                            <a class="nav-link active" href="#featured-products-block" data-toggle="tab">Đặc sắc</h2></a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="#new-products-block" data-toggle="tab">Mới nhất</h2></a>
-                        </li>
-                        <li class="nav-item last_item">
-                            <a class="nav-link " href="#bestseller-products-block" data-toggle="tab">Bán chạy</h2></a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="product_content ">
-                    <div class="tab-content">
-
-                        <div id="featured-products-block" class="tab-pane fadeIn animated active">
-                            <div class="block_content row">
-                                <div id="kk-featured-products" class="owl-carousel owl-loaded owl-drag">
-                                    <?php
-                                        foreach ($getAllProAsc as $row){
-                                          if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[0])){
-                                            $img = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }else{
-                                            $img = PATH_IMG_SITE.'logo.png';
-                                        }
-                                        if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[1])){
-                                            $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[1];
-                                        }else{
-                                            $imgCover =  PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }
-                                        if($row['new'] == 1){
-                                          $new = ' <li class="product-flag new">New</li>';
-                                        }else{
-                                          $new = '';
-                                        }
-                                        
-                                            $price = $row['price'];
-                                            
-                                        if($row['discount'] > 0){
-                                            
-                                          $discount = ' <li class="product-flag discount">'.$row['discount'].'%</li>';
-                                          $giaDiscount = ' <div class="product-price-and-shipping">
-              
-                                                          <span class="sr-only">Regular price</span>
-                                                          <span class="regular-price">'.$this->lib->forMatTien($price).' đ</span>
-                                                          <span class="discount-percentage discount-product">-'.$row['discount'].'%</span>
-            
-            
-                                                          <span class="sr-only">Price</span>
-                                                          <span itemprop="price" class="price">'.$this->lib->forMatTien(($price - ($row['discount']*$price)/100)).' đ</span>
-                                                      </div>';
-                                        }else{
-                                          $discount = '';
-                                          $giaDiscount = '<div class="product-price-and-shipping">
-                                  
-                        
-                                                            <span class="sr-only">Price</span>
-                                                            <span itemprop="price" class="price">'.$this->lib->forMatTien($price).' đ</span>
-
-                                                      </div>';
-                                        }
-                                        if($price<=0 ||$price =='' ){
-                                            $giaDiscount = '';
-                                        }
-                                        
-                                            $name = $row['name'];
-                                        
-                                        $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                                            echo '<div class="kktab-block">
-                                          <article class="product-miniature js-product-miniature " data-id-product="17"
-                                            data-id-product-attribute="46" itemscope itemtype="http://schema.org/Product">
-                                            <div class="thumbnail-container">
-                                                <div class="product-inner">
-                                                    <div class="thumbnail-inner">
-                                                        <div class="inner">
-                
-                                                            <div class="product-img">
-                
-                                                                <a href="'. $link.'"
-                                                                    class="thumbnail product-thumbnail">
-                
-                                                                    <img src="'. $img.'"
-                                                                        alt="Pellentesque augue"
-                                                                        data-full-size-image-url="'. $img.'" height="250" >
-                                                                    <img class="second_image img-responsive"
-                                                                        src="'. $imgCover.'"
-                                                                        alt="" title="" height="250" width="200" />
-                                                                </a>
-                                                            </div>
-                                                            <ul class="product-flags">
-                                                              '.$discount.'
-                                                                '.$new.'
-                                                              
-                                                            </ul>
-                
-                                                        </div>
-                
-                                                        <div class="kkproducthover">
-                                                
-                                                            <div class="quick-view-block">
-                                                                <a href="'. $link.'" class=" btn" 
-                                                                    title="Quick view">
-                                                                 
-                                                                </a>
-                                                            </div>
-                
-                
-                                                        </div>
-                                                    </div>
-                
-                
-                                                    <div class="product-description">
-                
-                
-                                                        <h3 class="h3 product-title" itemprop="name"><a
-                                                                href="'. $link.'">'.$name.'</a></h3>
-                
-                
-                                                        '.$giaDiscount.'
-                
-    
-                                                    </div>
-                               
-                
-                                                </div>
-                                            </div>
-                                        </article>
-                                        </div>';
-                                          }
-                                      
-                                      ?>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div id="new-products-block" class="tab-pane fadeIn animated ">
-                            <div class="block_content row">
-                                <div id="kk-featured-products" class="owl-carousel">
-                                    <?php
-                                        foreach ($getAllByHotAsc as $row){
-                                          if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[0])){
-                                            $img = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }else{
-                                            $img = PATH_IMG_SITE.'logo.png';
-                                        }
-                                        if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[1])){
-                                          $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[1];
-                                        }else{
-                                            $imgCover =  PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }
-                                        if($row['new'] == 1){
-                                          $new = ' <li class="product-flag new">New</li>';
-                                        }else{
-                                          $new = '';
-                                        }
-                                        
-                                            $price = $row['price'];
-                                            
-                                        if($row['discount'] > 0){
-                                        
-                                            $discount = ' <li class="product-flag discount">'.$row['discount'].'%</li>';
-                                            $giaDiscount = ' <div class="product-price-and-shipping">
-                
-                                                            <span class="sr-only">Regular price</span>
-                                                            <span class="regular-price">'.$this->lib->forMatTien($price).' đ</span>
-                                                            <span class="discount-percentage discount-product">-'.$row['discount'].'%</span>
-                
-                
-                                                            <span class="sr-only">Price</span>
-                                                            <span itemprop="price" class="price">'.$this->lib->forMatTien(($price - ($row['discount']*$price)/100)).' đ</span>
-                                                        </div>';
-                                            }else{
-                                            $discount = '';
-                                            $giaDiscount = '<div class="product-price-and-shipping">
-                                    
-                            
-                                                                <span class="sr-only">Price</span>
-                                                                <span itemprop="price" class="price">'.$this->lib->forMatTien($price).' đ</span>
-    
-                                                        </div>';
-                                            }
-                                        if($price<=0 ||$price =='' ){
-                                            $giaDiscount = '';
-                                        }
-                                        
-                                            $name = $row['name'];
-                                        
-                                        $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                                        echo '<div class="kktab-block">
-                                      <article class="product-miniature js-product-miniature " data-id-product="17"
-                                        data-id-product-attribute="46" itemscope itemtype="http://schema.org/Product">
-                                        <div class="thumbnail-container">
-                                            <div class="product-inner">
-                                                <div class="thumbnail-inner">
-                                                    <div class="inner">
-            
-                                                        <div class="product-img">
-            
-                                                            <a href="'. $link.'"
-                                                                class="thumbnail product-thumbnail">
-            
-                                                                <img src="'. $img.'"
-                                                                    alt="Pellentesque augue"
-                                                                    data-full-size-image-url="'. $img.'" height="250" >
-                                                                <img class="second_image img-responsive"
-                                                                    src="'. $imgCover.'"
-                                                                    alt="" title="" height="250" width="200" />
-                                                            </a>
-                                                        </div>
-                                                        <ul class="product-flags">
-                                                          '.$discount.'
-                                                            '.$new.'
-                                                          
-                                                        </ul>
-            
-                                                    </div>
-            
-                                                    <div class="kkproducthover">
-                                            
-                                                        <div class="quick-view-block">
-                                                            <a href="'. $link.'" class=" btn" 
-                                                                title="Quick view">
-                                                             
-                                                            </a>
-                                                        </div>
-            
-            
-                                                    </div>
-                                                </div>
-            
-            
-                                                <div class="product-description">
-            
-            
-                                                    <h3 class="h3 product-title" itemprop="name"><a
-                                                            href="'. $link.'">'.$name.'</a></h3>
-            
-            
-                                                    '.$giaDiscount.'
-            
-
-                                                </div>
-                           
-            
-                                            </div>
-                                        </div>
-                                    </article>
-                                    </div>';
-                                          }
-                                      
-                                      ?>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div id="bestseller-products-block" class="tab-pane fadeIn animated ">
-                            <div class="block_content row">
-                                <div id="kk-featured-products" class="owl-carousel">
-                                    <?php
-                                        foreach ($getAllByBuyed as $row){
-                                          if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[0])){
-                                            $img = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }else{
-                                            $img = PATH_IMG_SITE.'logo.png';
-                                        }
-                                        if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[1])){
-                                          $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[1];
-                                        }else{
-                                            $imgCover =  PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                                        }
-                                        if($row['new'] == 1){
-                                          $new = ' <li class="product-flag new">New</li>';
-                                        }else{
-                                          $new = '';
-                                        }
-                                        
-                                        $price = $row['price'];
-                                            
-                                        if($row['discount'] > 0){
-                                        
-                                            $discount = ' <li class="product-flag discount">'.$row['discount'].'%</li>';
-                                            $giaDiscount = ' <div class="product-price-and-shipping">
-                
-                                                            <span class="sr-only">Regular price</span>
-                                                            <span class="regular-price">'.$this->lib->forMatTien($price).' đ</span>
-                                                            <span class="discount-percentage discount-product">-'.$row['discount'].'%</span>
-                
-                
-                                                            <span class="sr-only">Price</span>
-                                                            <span itemprop="price" class="price">'.$this->lib->forMatTien(($price - ($row['discount']*$price)/100)).' đ</span>
-                                                        </div>';
-                                            }else{
-                                            $discount = '';
-                                            $giaDiscount = '<div class="product-price-and-shipping">
-                                    
-                            
-                                                                <span class="sr-only">Price</span>
-                                                                <span itemprop="price" class="price">'.$this->lib->forMatTien($price).' đ</span>
-
-                                                        </div>';
-                                            }
-                                        if($price<=0 ||$price =='' ){
-                                            $giaDiscount = '';
-                                        }
-                                        
-                                            $name = $row['name'];
-                                        
-                                        $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                                        echo '<div class="kktab-block">
-                                      <article class="product-miniature js-product-miniature " data-id-product="17"
-                                        data-id-product-attribute="46" itemscope itemtype="http://schema.org/Product">
-                                        <div class="thumbnail-container">
-                                            <div class="product-inner">
-                                                <div class="thumbnail-inner">
-                                                    <div class="inner">
-            
-                                                        <div class="product-img">
-            
-                                                            <a href="'. $link.'"
-                                                                class="thumbnail product-thumbnail">
-            
-                                                                <img src="'. $img.'"
-                                                                    alt="Pellentesque augue"
-                                                                    data-full-size-image-url="'. $img.'" height="250" >
-                                                                <img class="second_image img-responsive"
-                                                                    src="'. $imgCover.'"
-                                                                    alt="" title="" height="250" width="200" />
-                                                            </a>
-                                                        </div>
-                                                        <ul class="product-flags">
-                                                          '.$discount.'
-                                                            '.$new.'
-                                                          
-                                                        </ul>
-            
-                                                    </div>
-            
-                                                    <div class="kkproducthover">
-                                            
-                                                        <div class="quick-view-block">
-                                                            <a href="'. $link.'" class=" btn" 
-                                                                title="Quick view">
-                                                             
-                                                            </a>
-                                                        </div>
-            
-            
-                                                    </div>
-                                                </div>
-            
-            
-                                                <div class="product-description">
-            
-            
-                                                    <h3 class="h3 product-title" itemprop="name"><a
-                                                            href="'. $link.'">'.$name.'</a></h3>
-            
-            
-                                                    '.$giaDiscount.'
-            
-
-                                                </div>
-                           
-            
-                                            </div>
-                                        </div>
-                                    </article>
-                                    </div>';
-                                          }
-                                      
-                                      ?>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="kkparallaxcms" class="parallax parallaxcms-outer hb-animate-element bottom-to-top "
-            data-source-url="<?=PATH_IMG_SITE.$banner[6]['bannerImage']?>">
-            <div class="container">
-                <div class="parallaxcms-inner container">
-                    <div class="parallaxcms">
-                        <div class="parallax-inner">
-
-                            <div class="parallax-caption1 ">Thời trang và hàng hiệu</div>
-                            <div class="parallax-caption2 ">Sản phẩm được chọn lọc những phiên bản cao cấp và tốt nhất
-                            </div>
-                            <div class="parallax-btn "><a href="<?=ROOT_URL?>/san-pham/tat-ca/trang-1" class="shopnow-button">Mua ngay</a></div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="container infinityspecial-products hb-animate-element bottom-to-top  clearfix">
-
-            <h3 class="kk-title">Sản phẩm đặc biệt</h3>
-
-            <div class="kkspecial-list bottom-to-top hb-animate-element">
-                <div class="row">
-                    <div id="infinityspecial-carousel" class="owl-carousel">
-                        <?php 
-                          foreach ($getAllProSpecial as $row) {
-                              if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[0])){
-                                  $img = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                              }else{
-                                  $img = PATH_IMG_SITE.'logo.png';
-                              }
-                              if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[1])){
-                                $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[1];
-                            }else{
-                                $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-                            }
-                            if($row['new'] == 1){
-                              $new = ' <li class="product-flag new">New</li>';
-                            }else{
-                              $new = '';
-                            }
-                            
-                            $price = $row['price'];
-                                
-                            if($row['discount'] > 0){
-                                    
-                                $discount = ' <li class="product-flag discount">'.$row['discount'].'%</li>';
-                                $giaDiscount = ' <div class="product-price-and-shipping">
-    
-                                                <span class="sr-only">Regular price</span>
-                                                <span class="regular-price">'.$this->lib->forMatTien($price).' đ</span>
-                                                <span class="discount-percentage discount-product">-'.$row['discount'].'%</span>
-    
-    
-                                                <span class="sr-only">Price</span>
-                                                <span itemprop="price" class="price">'.$this->lib->forMatTien(($price - ($row['discount']*$price)/100)).' đ</span>
-                                            </div>';
-                                }else{
-                                $discount = '';
-                                $giaDiscount = '<div class="product-price-and-shipping">
-                        
-                
-                                                    <span class="sr-only">Price</span>
-                                                    <span itemprop="price" class="price">'.$this->lib->forMatTien($price).' đ</span>
-
-                                            </div>';
-                                }
-                            if($price<=0 ||$price =='' ){
-                                $giaDiscount = '';
-                            }
-                            
-                                $name = $row['name'];
-                            
-                            $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                            echo '<div class="kktab-block">
-                            <article class="product-miniature js-product-miniature " data-id-product="17"
-                              data-id-product-attribute="46" itemscope itemtype="http://schema.org/Product">
-                              <div class="thumbnail-container">
-                                  <div class="product-inner">
-                                      <div class="thumbnail-inner">
-                                          <div class="inner">
-  
-                                              <div class="product-img">
-  
-                                                  <a href="'. $link.'"
-                                                      class="thumbnail product-thumbnail">
-  
-                                                      <img src="'. $img.'"
-                                                          alt="Pellentesque augue"
-                                                          data-full-size-image-url="'. $img.'" height="250" >
-                                                      <img class="second_image img-responsive"
-                                                          src="'. $imgCover.'"
-                                                          alt="" title="" height="250" width="200" />
-                                                  </a>
-                                              </div>
-                                              <ul class="product-flags">
-                                                '.$discount.'
-                                                  '.$new.'
-                                                
-                                              </ul>
-  
-                                          </div>
-  
-                                          <div class="kkproducthover">
-                                  
-                                              <div class="quick-view-block">
-                                                  <a href="'. $link.'" class=" btn" 
-                                                      title="Quick view">
-                                                   
-                                                  </a>
-                                              </div>
-  
-  
-                                          </div>
-                                      </div>
-  
-  
-                                      <div class="product-description">
-  
-  
-                                          <h3 class="h3 product-title" itemprop="name"><a
-                                                  href="'. $link.'">'.$name.'</a></h3>
-  
-  
-                                          '.$giaDiscount.'
-  
-
-                                      </div>
-                 
-  
-                                  </div>
-                              </div>
-                          </article>
-                          </div>';
-                          }
-                        ?>
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-
-
-
-
-
-<section id="wrapper">
-
-
-    <div class="container">
-        <div class="row">
-
-
-
-
-            <div id="content-wrapper" class="col-xs-12">
-
-
-
-                <section id="main">
-
-
-
-
-
-
-
-                    <section id="content" class="page-home">
-
-
-
-
-
-                        
-                        <div class="col-lg-12 col-xs-12 kk_banner clearfix hb-animate-element bottom-to-top">
-                            <div class="kk_sub_banner row">
-                                <div class="slider banner1  col-lg-4 col-xs-12 hb-animate-element bottom-to-top">
-                                    <div  class="kk-customhover-fadeintopbottom" title="This is Caption">
-                                        <div class="kkmultibanner-hover">
-                                            <img src="<?=PATH_IMG_SITE.$banner[7]['bannerImage']?>" class="img-responsive"
-                                                alt="This is Caption" />
-                                                
-                                        </div>
-                                        <div class="image_cate">
-                                            <h4 class="display-4" >QUẦN ÁO</h4>
-                                            <p></p>
-                                            <a href="<?=ROOT_URL?>/danh-muc/quan-ao-7/trang-1" class="btn btn-light">XEM THÊM</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div><div class="slider banner1  col-lg-4 col-xs-12 hb-animate-element bottom-to-top">
-                                    <div  class="kk-customhover-fadeintopbottom" title="This is Caption">
-                                        <div class="kkmultibanner-hover">
-                                            <img src="<?=PATH_IMG_SITE.$banner[8]['bannerImage']?>" class="img-responsive"
-                                                alt="This is Caption" />
-                                                
-                                        </div>
-                                        <div class="image_cate">
-                                            <h4 class="display-4" >GIÀY</h4>
-                                            <p></p>
-                                            <a href="<?=ROOT_URL?>/danh-muc/giay-6/trang-1" class="btn btn-light">XEM THÊM</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div><div class="slider banner1  col-lg-4 col-xs-12 hb-animate-element bottom-to-top">
-                                    <div  class="kk-customhover-fadeintopbottom" title="This is Caption">
-                                        <div class="kkmultibanner-hover">
-                                            <img src="<?=PATH_IMG_SITE.$banner[9]['bannerImage']?>" class="img-responsive"
-                                                alt="This is Caption" />
-                                                
-                                        </div>
-                                        <div class="image_cate">
-                                            <h4 class="display-4" >PHỤ KIỆN</h4>
-                                            <p></p>
-                                            <a href="<?=ROOT_URL?>/danh-muc/phu-kien-8/trang-1" class="btn btn-light">XEM THÊM</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-
-
-
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Footer Start-->
-                </section>
-                <footer class="page-footer">
-
-                    <!-- Footer content -->
-
-                </footer>
-</section>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-
-<div id="bottom_home">
-    <section id="itspecialdeals" class="container featured-products clearfix mt-3 hb-animate-element bottom-to-top">
-
-        <h2 class="kk-title">Sản phẩm khuyến mãi</h2>
-
-        <div id="itspecialdeals-carousel" class="owl-carousel products collapse data-toggler">
-                  
-             <?php
-              foreach ($getAllProByDeal as $row) {
-                if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[0])){
-                  $img = PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-              }else{
-                  $img = PATH_IMG_SITE.'logo.png';
-              }
-              if(is_file(PATH_IMG_SITE.explode(",",$row['image_list'])[1])){
-                $imgCover = PATH_IMG_SITE.explode(",",$row['image_list'])[1];
-            }else{
-                $imgCover =  PATH_IMG_SITE.explode(",",$row['image_list'])[0];
-            }
-            if($row['new'] == 1){
-              $new = ' <li class="product-flag new">New</li>';
-            }else{
-              $new = '';
-            }
-            
-            $price = $row['price'];
-                
-            if($row['discount'] > 0){
-                                
-            $discount = ' <li class="product-flag discount">'.$row['discount'].'%</li>';
-            $giaDiscount = ' <div class="product-price-and-shipping">
-
-                            <span class="sr-only">Regular price</span>
-                            <span class="regular-price">'.$this->lib->forMatTien($price).' đ</span>
-                            <span class="discount-percentage discount-product">-'.$row['discount'].'%</span>
-
-
-                            <span class="sr-only">Price</span>
-                            <span itemprop="price" class="price">'.$this->lib->forMatTien(($price - ($row['discount']*$price)/100)).' đ</span>
-                        </div>';
-            }else{
-            $discount = '';
-            $giaDiscount = '<div class="product-price-and-shipping">
-    
-
-                                <span class="sr-only">Price</span>
-                                <span itemprop="price" class="price">'.$this->lib->forMatTien($price).' đ</span>
-
-                        </div>';
-            }
-            if($price<=0 ||$price =='' ){
-                $giaDiscount = '';
-            }
-            
-                $name = $row['name'];
-            
-                $link = ROOT_URL."/san-pham-chi-tiet/".$row['slug'];
-                echo '<article class="product-miniature js-product-miniature " data-id-product="17" data-id-product-attribute="46"
-                itemscope itemtype="http://schema.org/Product">
-                <div class="thumbnail-container">
-                    <div class="product-inner col-xs-12">
-                        <div class="thumbnail-inner col-xs-12 col-sm-4">
-                            <div class="inner">
-
-                                <div class="product-img">
-
-                                    <a href="'.$link.'"
-                                        class="thumbnail product-thumbnail ">
-
-                                        <img src="'.$img.'" alt="Pellentesque augue"
-                                            data-full-size-image-url="'.$img.'" class="img-deal" width="200" height="200">
-                                        <img class="second_image img-responsive" width="200" height="200"
-                                            src="'.$imgCover.'" alt="" title="" />
-                                    </a>
-
-                                </div>
-                            </div>
-
-                            <div class="kkproducthover">
-              
-
-                            </div>
-                        </div>
-
-
-                        <div class="product-description col-xs-12 col-sm-8">
-
-                            <h3 class="h3 product-title" itemprop="name"><a
-                                    href="'.$link.'">'.$name.'</a></h3>
-
-
-
-                            '.$giaDiscount.'
-
-                            <p class="product-desc" itemprop="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris
-                                eleifend, quam a vulputate dictum, massa quam dapibus leo.
-                            </p>
-
-
-
-                        </div>
-                    
-                    </div>
-                </div>
-            </article>';
-              }
-             ?>             
-            
-
-
-        </div>
-
     </section>
 
+    <div class="product-first w-100 text-center mt-5 mb-5">
+        <div class="container mb-5">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+                    <h2 class="mb-4 text-uppercase">HỆ THỐNG SÁCH TIẾNG ANH THEO CẤP HỌC</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 box-categories  mb-3 ">
+                    <div class="card show-button-to-right">
+                        <div class="div-image">
+                            <img src="/book/site/views/assets/images/user-cat.jpg" class="card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="title-categories d-flex align-items-center justify-content-center">
+                                <h2 class="card-title color-white font-family-Neo-Sans-bold">MẦM NON</h2>
+                            </div>
+                            <a href="#" class="btn btn-primary mr-0-auto mt-auto button-to-right">Xem thêm <i
+                                    class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </a>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 box-categories mb-3">
+                    <div class="card show-button-to-right">
+                        <div class="div-image">
+                            <img src="/book/site/views/assets/images/user-cat-1.jpg" class="card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="title-categories d-flex align-items-center justify-content-center">
+                                <h2 class="card-title color-white font-family-Neo-Sans-bold">TIỂU HỌC</h2>
+                            </div>
 
-    <div class="kkmanufacturer container hb-animate-element bottom-to-top clearfix">
+                            <a href="#" class="btn btn-primary mr-0-auto mt-auto button-to-right">Xem thêm <i
+                                    class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 box-categories  mb-3">
+                    <div class="card show-button-to-right">
+                        <div class="div-image">
+                            <img src="/book/site/views/assets/images/user-cat-2.jpg" class="card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="title-categories d-flex align-items-center justify-content-center">
+                                <h2 class="card-title color-white font-family-Neo-Sans-bold">TRUNG HỌC <br> CƠ SỞ</h2>
+                            </div>
 
-        <h3 class="kk-title">Thương hiệu phổ biến</h3>
+                            <a href="#" class="btn btn-primary mr-0-auto mt-auto button-to-right">Xem thêm <i
+                                    class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 box-categories mb-3 ">
+                    <div class="card show-button-to-right">
+                        <div class="div-image">
+                            <img src="/book/site/views/assets/images/user-cat-3.jpg" class="card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="title-categories d-flex align-items-center justify-content-center">
+                                <h2 class="card-title color-white font-family-Neo-Sans-bold">TRUNG HỌC <br> PHỔ THÔNG</h2>
+                            </div>
 
-
-        <div class="block_content row">
-            <div id="kkbrandlogo" class="owl-carousel">
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture3">
-                            <img src="views/assets/img/nike-logo.jpg" alt="Manufacture3" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/adidas-logo.jpg" alt="Manufacture4" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/logo-chanel.jpg" alt="Manufacture4" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/logo-dior.png" alt="Manufacture4" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/logo-gucci.png" alt="Manufacture4" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/logo-jordan.png" alt="Manufacture4" />
-                        </a>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="image-container">
-                        <a href="#"
-                            title="Manufacture4">
-                            <img src="views/assets/img/logo-louis-vuitton.jpg" alt="Manufacture4" />
-                        </a>
+                            <a href="#" class="btn btn-primary mr-0-auto mt-auto button-to-right">Xem thêm <i
+                                    class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
+
+    <section class="ftco-section services-section mt-5  pt-6">
+        <div class="container position-relative z-10">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 heading-section pr-md-5 ftco-animate">
+                    <div class="w-100 mb-4 mb-md-0">
+                        <h1 class="color-main text-uppercase sach-mem">Sách Mềm</h1>
+                        <h3 class="mb-4">Hệ thống phần mềm và học liệu điện tử hỗ trợ giảng dạy, học tập</h3>
+                        <p class="color-gray-1 font-size-1em">Được chuyển thể từ sách giấy và bổ sung thêm nội dung đa phương tiện, trò
+                            chơi, ứng dụng học
+                            tâp, nội dung mở rộng. Ngân hàng câu hỏi và công cụ tạo đề kiểm tra, đánh giá thường xuyên
+                            và
+                            định kỳ.</p>
+                        <p class="color-gray-1 font-size-1em">Nội dung sách được mở rộng với tư liệu, câu hỏi bổ sung, giải thích hướng
+                            dẫn và thảo
+                            luận.Nội dung do cộng đồng đóng góp, đã qua kiểm duyệt để đảm bảo chất lượng.</p>
+                        <div>
+                            <a href="https://www.sachmem.vn/">
+                                <button class="btn btn-secondary py-2 px-3">sachmem.vn</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6 text-right">
+                    <img src="/book/site/views/assets/images/Logo-SM-(New).png" class="img-fluid" alt="">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4 text-uppercase">Tin Tức - Sự Kiện</h2>
+                </div>
+            </div>
+            <div class="container">
+
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="w-100 right-item-video">
+                        <div class="row">
+                            <div class="col-4 p-0 bg-image-fix" style="background: url(/book/site/views/assets/images/tin-4.png);">
+                                <!-- <img src="images/tin-4.png" alt="" class="img-fluid"> -->
+                            </div>
+                            <div class="col-8">
+                                <h4 c2ass="m-0 p-0 title-1"> Sách giáo khoa tiếng Anh 6 theo chương trình THPT 2018</h4>
+                                <small class="m-0 p-0">Thứ tư, 28/04/2001 | 18:00</small>
+                                <p class="description-1 mt-2">Sách giáo khoa Tiếng Anh 6 nằm trong bộ sách giáo khoa
+                                    theo Chương trình THPT 2018 do GS.TS. Hoàng Văn Vân là Tổng Chủ biên...</p>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="w-100 right-item-video">
+                        <div class="row">
+                            <div class="col-4 p-0 bg-image-fix" style="background: url(/book/site/views/assets/images/video-1.png);">
+                                <!-- <img src="images/video-1.png" alt="" class="img-fluid"> -->
+                            </div>
+                            <div class="col-8">
+                                <h4 c2ass="m-0 p-0 title-1">Sách giáo khoa tiếng Anh 2 theo chương trình THPT 2018</h4>
+                                <small class="m-0 p-0">Thứ tư, 28/04/2001 | 18:00</small>
+                                <p class="description-1 mt-2">Sách Tiếng Anh 2 của NXB Giáo dục Việt Nam theo Chương
+                                    trình GDPT 2018 là sản phẩm kết hợp của các tác giả uy tín của Việt Nam...</p>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                <div class="col-0 col-md-4">
+                    <div class="w-100 left-item-video">
+                        <div class="row">
+                            <div class="col-4 p-0">
+                                <img src="/book/site/views/assets/images/tin-1.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-8">
+                                <h4 class="m-0 p-0 title-1">Sách giáo khoa tiếng Anh 6 theo chương trình THPT 2018</h4>
+                                <small class="m-0 p-0">Thứ tư, 28/04/2021 | 18:00</small>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="w-100 left-item-video">
+                        <div class="row">
+                            <div class="col-4 p-0">
+                                <img src="/book/site/views/assets/images/tin-2.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-8">
+                                <h4 class="m-0 p-0 title-1">Tập huấn giáo viên sử dụng SGK Tiếng Anh 2 và Tiếng Anh 6
+                                    NXBGDVN</h4>
+                                <small class="m-0 p-0">Thứ tư, 28/04/2021 | 18:00</small>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="w-100 left-item-video">
+                        <div class="row">
+                            <div class="col-4 p-0">
+                                <img src="/book/site/views/assets/images/tin-3.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-8">
+                                <h4 class="m-0 p-0 title-1">NXBGDVN tiếp tục mở miễn phí kho học liệu điện tử Sách Mềm
+                                </h4>
+                                <small class="m-0 p-0">Thứ tư, 28/04/2021 | 18:00</small>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light  pt-0">
+        <div class="container">
+            <div class="row justify-content-center pb-4 m-0">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">DẠY LINH HOẠT - HỌC CHỦ ĐỘNG</h2>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme slide-video">
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xmpRkauS2ss"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black limit-content-2"
+                                href="https://www.youtube.com/watch?v=xmpRkauS2ss">Tiết dạy SGK Tiếng Anh 6 Unit 9
+                                Lesson 7 - Looking back & Project</a></h4>
+                    </div>
+                </div>
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GibB1q4kr3M"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black limit-content-2"
+                                href="https://www.youtube.com/watch?v=GibB1q4kr3M">Tiết dạy minh họa SGK Tiếng Anh 6
+                                Unit 9 Lesson 2 - A closer look 1</a></h4>
+                    </div>
+                </div>
+
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/d2gBvI8PMWU"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=d2gBvI8PMWU">Tiết dạy minh họa SGK Tiếng Anh 6
+                                Unit 9 Lesson 3 - A closer look 2</a></h4>
+                    </div>
+                </div>
+
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/c4uz5_VTrhk"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=c4uz5_VTrhk">Tiết dạy minh họa SGK Tiếng Anh 2
+                                Unit 10 Lesson 1</a></h4>
+                    </div>
+                </div>
+
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/W0LT5CtmXUw"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=W0LT5CtmXUw">Tiết dạy minh họa SGK Tiếng Anh 6
+                                Unit 9 Lesson 5 - Skill 1</a></h4>
+                    </div>
+                </div>
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xmpRkauS2ss"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=vNg69E1yS4w">Tiết dạy minh họa SGK Tiếng Anh 6
+                                Unit 9 Lesson 4 - Communication</a></h4>
+                    </div>
+                </div>
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/W2nB1uB0JOE"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=W2nB1uB0JOE">Tiết dạy minh họa SGK Tiếng Anh 2
+                                Unit 10 Lesson 2</a></h4>
+                    </div>
+                </div>
+
+                <div class="item slide-video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/M3AFJcoc26Y"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <div class="title color-main">
+                        <h4 class="m-0 p-0 title-2"><a class="color-black"
+                                href="https://www.youtube.com/watch?v=vNg69E1yS4w">Tiết giảng minh họa SGK Tiếng Anh 1
+                                Unit 3 Lesson 3
+                            </a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(/book/site/views/assets/images/bg_4.jpg);">
+        <div class="overlay-home"></div>
+        <div class="counter w-90 mr-0-auto">
+            <div class="row">
+                <div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+                    <h2 class="font-family-Neo-Sans">NHỮNG CON SỐ ẤN TƯỢNG</h2>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center count-div-flex">
+                <div class="item d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18 d-flex align-items-center">
+                        <!-- <div class="icon"><span class="flaticon-tools"></span></div> -->
+                        <div class="text text-center">
+                            <strong class="number">0</strong><strong class="number" data-number="6">0</strong>
+                            <p class="text-white counter-item-text">Hợp tác với 6 nhà <br> xuất bản uy tín trên thế giới </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18 d-flex align-items-center">
+                        <!-- <div class="icon"><span class="flaticon-online"></span></div> -->
+                        <div class="text text-center">
+                            <strong class="number" data-number="63">0</strong>
+                            <p class="text-white counter-item-text">Triển khai khắp 63 <br> tỉnh, thành phố</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18 d-flex align-items-center">
+                        <!-- <div class="icon"><span class="flaticon-instructor"></span></div> -->
+                        <div class="text text-center">
+                            <strong class="number" data-number="7000">0</strong> <strong class="number">+</strong>
+                            <p class="text-white counter-item-text">Gần 7 nghìn buổi tập huấn <br> đã được triển khai</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18 d-flex align-items-center">
+                        <!-- <div class="icon"><span class="flaticon-tools"></span></div> -->
+                        <div class="text text-center">
+                            <strong class="number" data-number="1000000">0 </strong> <strong class="number">+</strong>
+                            <p class="text-white counter-item-text">Hơn 1 triệu tài khoản <br> người dùng Sách Mềm</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18 d-flex align-items-center">
+                        <!-- <div class="icon"><span class="flaticon-graduated"></span></div> -->
+                        <div class="text text-center">
+                            <strong class="number" data-number="5000000">0 </strong><strong class="number">+</strong>
+                            <p class="text-white counter-item-text">Hơn 5 triệu học sinh <br> đang theo học hằng năm</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>

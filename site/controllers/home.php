@@ -22,17 +22,8 @@
            
         }
         function home()
-        {
-			$banner = $this->model->getAllBanner();
-           $getAllProSpecial = $this->model->getAllProSpecial();
-           $getAllProAsc = $this->model->getAllProAsc(10,10);
-           $getAllByHotAsc = $this->model->getAllByHotAsc();
-           $getAllByBuyed = $this->model->getAllByBuyed(10,0);
-           $getAllProByDeal =  $this->model->getAllProByDeal();
-           $getMenuParent = $this->model->getMenuParent();
-		   $getMenuParentdoc = $this->model->getMenuParentdoc();
-		   
-           $page_title ="Trang Chủ - Lê Quân Sneaker";
+        {		   
+           $page_title ="Trang Chủ - EngBook";
            $viewFile = "views/home.php";
            require_once "views/layout.php";  
         }
