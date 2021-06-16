@@ -16,3 +16,8 @@
     background-image: url('../../../images/student.jpg');
     background-repeat: no-repeat;
 }
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: block!important;    
+}

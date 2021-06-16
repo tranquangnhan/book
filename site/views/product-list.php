@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-4 d-flex align-items-stretch ftco-animate">
                         <div class="project-wrap">
-                            <a href="<?=SITE_URL?>?act=detailproduct" class="img" style="background-image: url(<?=PATH_URL?>images/S6-AB.png);">
+                            <a href="<?=SITE_URL?>?act=productdetail" class="img" style="background-image: url(<?=PATH_URL?>images/S6-AB.png);">
                                 <span class="price">Sách</span>
                             </a>
                             <div class="text p-4">

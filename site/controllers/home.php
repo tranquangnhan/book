@@ -24,11 +24,11 @@ class Home
             case "home": 
                 $this->home();
                 break;
-            case "detailproduct": 
-                $this->detailproduct();
+            case "productdetail": 
+                $this->productdetail();
                 break;
-            case "aboutUs": 
-                $this->aboutUs();
+            case "about": 
+                $this->about();
                 break;
             case "products": 
                 $this->products();
@@ -62,9 +62,9 @@ class Home
         require_once "views/layout.php";
     }
 
-    public function aboutUs() {
+    public function about() {
         $page_title   = "Giới Thiệu - EngBook";
-        $viewFile     = "views/aboutUs.php";
+        $viewFile     = "views/about.php";
         $css          = "about.css";
         $namePage     = "Giới Thiệu";
         require_once "views/layout.php";
@@ -77,7 +77,7 @@ class Home
         require_once "views/layout.php";
     }
 
-    public function detailproduct() {
+    public function productdetail() {
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";
         $css          = "course-detail.css";

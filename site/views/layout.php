@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title><?= $page_title ?></title>
+    <title><?=$page_title?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,9 +17,9 @@
     <link rel="stylesheet" href="<?=PATH_URL?>css/css-main/flaticon.css">
     <link rel="stylesheet" href="<?=PATH_URL?>css/css-main/style.css">
     <link rel="stylesheet" href="<?=PATH_URL?>css/css-main/reponsive/home.css">
-    <?php if (isset($css)) { ?>
-        <link rel="stylesheet" href="<?=PATH_URL?>css/css-main/style/<?= $css ?>">
-    <?php } ?>
+    <?php if (isset($css)) {?>
+        <link rel="stylesheet" href="<?=PATH_URL?>css/css-main/style/<?=$css?>">
+    <?php }?>
 </head>
 
 <body>
@@ -75,11 +75,13 @@
             </div>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item bar-active active"><a href="<?=SITE_URL?>?act=home" class="nav-link">Trang Chủ</a></li>
-                    <li class="nav-item dropdown-2">
-                        <a href="<?=SITE_URL?>?act=aboutUs" class="nav-link">Giới Thiệu</a>
+                    <li class="nav-item <?php echo ($viewFile == "views/home.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=home" class="nav-link">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item dropdown-2 <?php echo ($viewFile == "views/about.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=about" class="nav-link">Giới Thiệu</a>
                         <ul class="dropdown-hover-2">
-                            <li><a href="<?=SITE_URL?>?act=aboutUs">Giới thiệu chung</a></li>
+                            <li><a href="<?=SITE_URL?>?act=about">Giới thiệu chung</a></li>
                             <!-- <li><a href="gdpt.html">Chương trình GDPT 2018</a></li>
                             <li><a href="thidiem.html">CHƯƠNG TRÌNH THÍ ĐIỂM</a></li>
                             <li><a href="https://phuongnam.edu.vn/">FAMILY AND FRIENDS</a></li>
@@ -87,7 +89,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown-2">
+                    <li class="nav-item dropdown-2 <?php echo ($viewFile == "views/product-list.php" || $viewFile == "views/product-detail.php") ? 'bar-active active' : '' ?>">
                         <a href="<?=SITE_URL?>?act=products" class="nav-link">Sản Phẩm</a>
                         <ul class="dropdown-hover-2 sanpham">
                             <li><a href="mamnon.html">MẦM NON</a></li>
@@ -97,11 +99,21 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item "><a href="<?=SITE_URL?>?act=student" class="nav-link">Học Sinh</a></li>
-                    <li class="nav-item"><a href="<?=SITE_URL?>?act=teacher" class="nav-link">Giáo Viên</a></li>
-                    <li class="nav-item"><a href="<?=SITE_URL?>?act=parent" class="nav-link">Phụ Huynh</a></li>
-                    <li class="nav-item"><a href="<?=SITE_URL?>?act=blog" class="nav-link">Tin Tức</a></li>
-                    <li class="nav-item "><a href="<?=SITE_URL?>?act=contact" class="nav-link">Liên Hệ</a></li>
+                    <li class="nav-item <?php echo ($viewFile == "views/student.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=student" class="nav-link">Học Sinh</a>
+                    </li>
+                    <li class="nav-item <?php echo ($viewFile == "views/teacher.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=teacher" class="nav-link">Giáo Viên</a>
+                    </li>
+                    <li class="nav-item <?php echo ($viewFile == "views/parent.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=parent" class="nav-link">Phụ Huynh</a>
+                    </li>
+                    <li class="nav-item <?php echo ($viewFile == "views/blog-list.php" || $viewFile == "views/blog-detail.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=blog" class="nav-link">Tin Tức</a>
+                    </li>
+                    <li class="nav-item <?php echo ($viewFile == "views/contact.php") ? 'bar-active active' : '' ?>">
+                        <a href="<?=SITE_URL?>?act=contact" class="nav-link">Liên Hệ</a>
+                    </li>
                 </ul>
             </div>
             <div class="navbar-brand m-0 p-0 search-on-nav search-box-will-hide">
@@ -113,7 +125,7 @@
     </nav>
     <!-- END nav -->
 
-    <?php if ($viewFile != "views/home.php") { ?>
+    <?php if ($viewFile != "views/home.php") {?>
     <section class="hero-wrap hero-wrap-2" style="background-image: url('<?=PATH_URL?>images/bg-header-about.jpg'); ">
         <div class="container">
             <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -125,18 +137,21 @@
                             </a>
                         </span>
                         <span>
-                            <?= $namePage ?>
+                            <?=$namePage?>
                             <i class="fa fa-chevron-right"></i>
                         </span>
                     </p>
-                    <h1 class="mb-0 bread"> <?= $namePage ?> </h1>
+                    <h1 class="mb-0 bread"> <?=$namePage?> </h1>
                 </div>
             </div>
         </div>
     </section>
-    <?php }   
-    if (file_exists($viewFile)) require_once "$viewFile"; ?>
-    
+    <?php }
+if (file_exists($viewFile)) {
+    require_once "$viewFile";
+}
+?>
+
     <footer class="ftco-footer ftco-no-pt">
         <div class="container">
             <div class="row mb-4">
@@ -202,11 +217,11 @@
     <script src="<?=PATH_URL?>js/js-main/jquery.magnific-popup.min.js"></script>
     <script src="<?=PATH_URL?>js/js-main/jquery.animateNumber.min.js"></script>
     <script src="<?=PATH_URL?>js/js-main/bootstrap-datepicker.js"></script>
-    <script src="<?=PATH_URL?>js/js-main/scrollax.min.js"></script>    
+    <script src="<?=PATH_URL?>js/js-main/scrollax.min.js"></script>
     <script src="<?=PATH_URL?>js/js-main/main.js"></script>
-    <?php if (isset($js)) { ?>
-    <script src="<?=PATH_URL?>js/js-main/main/<?= $js ?>"></script>
-    <?php } ?>
+    <?php if (isset($js)) {?>
+    <script src="<?=PATH_URL?>js/js-main/main/<?=$js?>"></script>
+    <?php }?>
 </body>
 
 </html>

@@ -59,15 +59,15 @@
                 <div class="col-lg-12 text-center">
                     <div class="containerleft">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn">
+                            <label class="btn p-0">
                                 <div id="option1" class="btn show-option option-active" data-show-op="1">Sách Mềm
                                 </div>
                             </label>
-                            <label class="btn">
+                            <label class="btn p-0">
                                 <div id="option2" class="btn show-option" data-show-op="2"> Luyện tập
                                 </div>
                             </label>
-                            <label class="btn">
+                            <label class="btn p-0">
                                 <div id="option3" class="btn show-option" data-show-op="3"> Kiểm tra đánh
                                     giá</div>
                             </label>
