@@ -1,36 +1,42 @@
-.option-item {
-    display: none;
+.img-cirle {
+    border-radius: 100px;
+    width: 80%;
+    background: #ffffff !important;
+    padding: 2em;
+    margin: 0 auto;
+    margin-bottom: 1em;
 }
 
-.option-item.active {
-    display: block;
+.project-wrap {
+    box-shadow: none;
+    text-align: center;
 }
 
-.control-active {
-    display: block;
+.p-l-0 {
+    padding-left: 0px;
 }
 
-.show-option {
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
+.project-wrap .text h3 a {
+    color: #2A629F;
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
-.show-option.option-active {
-    background: #4986fc !important;
-    border: 1px solid #4986fc !important;
-    color: #fff !important;
+.btn-group, .btn-group-vertical {
+    display: block
 }
 
-.btn:hover {
-    color: #ffffff;
-    text-decoration: none;
+.box-shadow-none {
+    box-shadow: none;
 }
 
-.bg-size-100 {
-    background-size: 100%;
+.about-teacher {
+    background-image: url('../../../images/teacher.jpg');
+    background-repeat: no-repeat;
 }
 
-.pd-1em {
-    padding: 1em;
+
+.img-cirle.icon-faw i {
+    font-size: 9em;
+    color: #f60000;
 }

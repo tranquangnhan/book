@@ -11,6 +11,7 @@ define('PATH_IMG_ADMIN','../uploads/');
 define('PAGE_SIZE',10);
 define('PAGE_SIZE_PRO',20);
 define('PATH_IMG_SITE','../uploads/');
+define('PATH_URL', '/book/site/views/assets/');
 session_start();
 
 

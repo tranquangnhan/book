@@ -25,6 +25,16 @@
 }
 
 @media only screen and (max-width: 991px) {
+    .dropdown-2 .dropdown-hover-2 {
+        left: 0px;
+    }
+
+    .dropdown-2 .dropdown-hover-2 {
+        top: 0px;
+        left: 0px;
+        margin-left: 19%;
+    }
+
     .icon-top i {
         font-size: 3em;
     }
@@ -57,7 +67,7 @@
 
     li.nav-item {
         border-radius: 5px;
-        text-align: center;
+        text-align: left;
     }
 
     .ftco-navbar-light.scrolled .nav-link {
