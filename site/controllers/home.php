@@ -74,6 +74,9 @@ class Home
         $page_title   = "Sản Phẩm - EngBook";
         $viewFile     = "views/product-list.php";
         $namePage     = "Sản Phẩm";
+
+        $categories   = $this->model->getCategories();
+        $listProduct  = $this->model->getProducts();
         require_once "views/layout.php";
     }
 

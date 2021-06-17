@@ -53,9 +53,8 @@ class Product
         }
 
         $ProductList = $this->model->GetProductList($CurrentPage);
-
         $Pagination = $this->model->Page($TotalProduct, $CurrentPage);
-
+        echo $Pagination; exit();
         $page_title = "Danh sách nhà sản xuất";
         $page_file = "views/product_index.php";
         require_once "views/layout.php";

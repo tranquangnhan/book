@@ -639,4 +639,20 @@ class Model_home extends Model_db{
         $sql = "SELECT bannerImage FROM banner";
         return $this->result1(0,$sql);
     }
+
+
+
+
+
+
+    ////////////          Long          //////////// 
+    function getCategories() {
+        $sql = 'SELECT * FROM category';
+        return $this->result1(0, $sql);
+    }
+
+    function getProducts() {
+        $sql = 'SELECT * FROM `book` WHERE class = 1 and type = 1 AND idcate = 1 ORDER BY id DESC limit 0, 9';
+        return $this->result1(0, $sql);
+    }
 }
