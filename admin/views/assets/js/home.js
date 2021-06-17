@@ -38,7 +38,7 @@ function checkDelete(link) {
     })
 }
 
-function checkDeleteCate(link, IDCATE, style, slug) {
+function checkDeleteCate(link, idcate) {
     Swal.fire({
         title: 'Xóa?',
         text: "Bạn chắc chắn muốn xóa!",
@@ -52,10 +52,8 @@ function checkDeleteCate(link, IDCATE, style, slug) {
         if (result.isConfirmed) {
             let checkStatus = new FormData();
 
-            checkStatus.append('IDcate', IDCATE);
-            checkStatus.append('style', style);
-            checkStatus.append('slug', slug);
-            checkStatus.append('Action', 'CheckChildCate');
+            checkStatus.append('idcate', idcate);
+            checkStatus.append('action', 'checkProductIssetByCategoryId');
             await $.ajax({
                 type: 'POST',
                 url: 'controllers/ajax/order.php',
@@ -65,19 +63,18 @@ function checkDeleteCate(link, IDCATE, style, slug) {
                 processData: false,
                 data: checkStatus,
                 success: async function(response) {
-                    console.log(response);
-                    if (response[0] === 0) {
+                    if (response == 0) {
                         await Swal.fire({
-                            timer: 2000,
+                            timer: 1500,
                             type: 'success',
-                            title: 'Yeah',
+                            title: 'Xóa thành công !',
                             showConfirmButton: false,
                             showCancelButton: false,
                             icon: "success"
                         });
                         window.location.href = link
 
-                    } else if (response[0] === 1) {
+                    } else if (response > 0) {
                         Swal.fire({
                             type: 'error',
                             title: 'Oops.',
@@ -86,16 +83,9 @@ function checkDeleteCate(link, IDCATE, style, slug) {
                             showCancelButton: false,
                             icon: "error"
                         });
-                    } else if (response[0] === 2) {
-                        Swal.fire({
-                            type: 'error',
-                            title: 'Oops.',
-                            text: 'Danh mục này chưa danh mục con! không thể xóa',
-                            showConfirmButton: true,
-                            showCancelButton: false,
-                            icon: "error"
-                        });
-                    }
+                    } 
+                }, error: function(e) {
+                    console.log(e);
                 }
             });
         }

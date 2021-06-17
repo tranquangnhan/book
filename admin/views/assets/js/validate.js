@@ -22,17 +22,44 @@ $(function() {
 $(function() {
     $("#formadd").validate({
         rules: {
-            name: { required: true, maxlength: 255 },
-            author: { required: true, maxlength: 20, minlength: 4 },
-            year: { required: true, maxlength: 4, minlength: 4 },
-            publishing: { required: true, maxlength: 255 },
-            link: { required: true, maxlength: 255 },
+            name: { required: true },
+            author: { required: true },
+            year: { required: true, minlength: 3 },
+            publishing: { required: true },
+            link: { required: true },
         },
         messages: {
             name: {
-                required: "<span class='badge badge-danger'>Mời bạn nhập họ tên vào",
-                maxlength: "<span class='badge badge-warning'>Họ tên dài quá, phải<20 ký tự</span>",
+                required: "<span class='badge badge-danger'>Không được để trống</span>",
+            },
+            author: {
+                required: "<span class='badge badge-danger'>Không được để trống</span>",
+            },
+            publishing: {
+                required: "<span class='badge badge-danger'>Không được để trống</span>",
+            },
+            link: {
+                required: "<span class='badge badge-danger'>Không được để trống</span>",
+            },
+            year: {
+                required: "<span class='badge badge-danger'>Không được để trống</span>",
+                minlength: "<span class='badge badge-warning'>năm phải đủ 4 số</span>",
             },
         }
     });
 });
+
+
+// $(function() {
+//     $("#form_category").validate({
+//         rules: {
+//             name: required 
+//         },
+//         messages: {
+//             name: {
+//                 required: "<span class='badge badge-danger'>Mời bạn nhập họ tên vào</span>"
+//             }
+//         }
+//     })
+// });
+

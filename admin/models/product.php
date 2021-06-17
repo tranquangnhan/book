@@ -149,4 +149,9 @@ class Model_product extends Model_db{
         $sql = "SELECT id as lastid FROM book ORDER BY id DESC LIMIT 1";
         return $this->result1(1,$sql)['lastid'];
     }
+
+    function countProductByIdcate($id) {
+        $sql = "SELECT count(*) AS sodong FROM book where idcate = ?";
+        return $this->result1(1,$sql, $id)['sodong'];
+    }
 }
