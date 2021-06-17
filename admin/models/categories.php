@@ -2,7 +2,7 @@
 class Model_categories extends Model_db{
     function listRecords() 
     {
-        $sql = "SELECT * FROM catalog order by parent";
+        $sql = "SELECT * FROM category";
         return $this->result1(0,$sql);
     }
     function listRecordsdoc() 
@@ -53,6 +53,11 @@ class Model_categories extends Model_db{
     function getCateBrand2($id){
         $sql = "SELECT * FROM catalog where parent=? and style=1 ";
         return $this->result1(0,$sql,$id);
+    }
+
+    function getCategoryNameById($id) {
+        $sql = "SELECT name FROM `category` WHERE id = ?";
+        return $this->result1(1, $sql, $id)['name'];
     }
 }
 
