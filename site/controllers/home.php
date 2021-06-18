@@ -25,7 +25,7 @@ class Home
                 $this->home();
                 break;
             case "productdetail": 
-                $this->productdetail();
+                // $this->productdetail();
                 break;
             case "about": 
                 $this->about();
@@ -74,18 +74,19 @@ class Home
         $page_title   = "Sản Phẩm - EngBook";
         $viewFile     = "views/product-list.php";
         $namePage     = "Sản Phẩm";
-
+        $js           = "product-list.js";
+        $ajax         = "product-list.js";
         $categories   = $this->model->getCategories();
         $listProduct  = $this->model->getProducts();
         require_once "views/layout.php";
     }
 
-    public function productdetail($slug) {
+    public function productdetail() {
         // getOnePro($slug);
 
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";
-        $css          = "course-detail.css";
+        $css          = "product-detail.css";
         $js           = "course-detail.js";
         $namePage     = "Sản Phẩm";
         require_once "views/layout.php";
