@@ -14,3 +14,4 @@ define('PATH_IMG_SITE','../uploads/');
 define('PATH_URL', '/book/site/views/assets/');
 session_start();
 ?>
+

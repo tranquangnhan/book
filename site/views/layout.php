@@ -199,11 +199,12 @@ if (file_exists($viewFile)) {
 
 
     <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
-        </svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
 
 
     <script src="<?=PATH_URL?>js/js-main/jquery.min.js"></script>
@@ -222,6 +223,10 @@ if (file_exists($viewFile)) {
     <?php if (isset($js)) {?>
     <script src="<?=PATH_URL?>js/js-main/main/<?=$js?>"></script>
     <?php }?>
+
+    <?php if (isset($ajax)) { ?>
+    <script src="<?=PATH_URL?>ajax/<?=$ajax?>"></script>
+    <?php } ?>
 </body>
 
 </html>

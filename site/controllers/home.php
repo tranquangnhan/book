@@ -74,7 +74,8 @@ class Home
         $page_title   = "Sản Phẩm - EngBook";
         $viewFile     = "views/product-list.php";
         $namePage     = "Sản Phẩm";
-
+        $js           = "product-list.js";
+        $ajax         = "product-list.js";
         $categories   = $this->model->getCategories();
         $listProduct  = $this->model->getProducts();
         require_once "views/layout.php";
@@ -83,7 +84,7 @@ class Home
     public function productdetail() {
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";
-        $css          = "course-detail.css";
+        $css          = "product-detail.css";
         $js           = "course-detail.js";
         $namePage     = "Sản Phẩm";
         require_once "views/layout.php";
