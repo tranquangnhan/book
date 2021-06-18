@@ -1,85 +1,141 @@
-<?php 
-   require_once "../system/config.php";
-//    require_once "../languages/".$_SESSION['lang'].".php";	
+<?php
+require_once "../system/config.php";
+//    require_once "../languages/".$_SESSION['lang'].".php";
 
-   require_once "../system/database.php";
-   require_once "../lib/myfunctions.php";
-   require_once "models/home.php"; 
-   require_once "models/user.php";
-   class Home{
-       function __construct()   {
-           $this->model = new model_home();
-           $this->modelUser = new Model_user();
-           $this->lib = new lib();
-        
-           $act = "home";
-           if(isset($_GET["act"])==true) $act=$_GET["act"];
-           switch ($act) {    
-   	      case "home": $this->home(); break;
-            case "detail": $this->detail(); break;
-           
-           }
-           
-        }
-        function home()
-        {
-			$banner = $this->model->getAllBanner();
-           $getAllProSpecial = $this->model->getAllProSpecial();
-           $getAllProAsc = $this->model->getAllProAsc(10,10);
-           $getAllByHotAsc = $this->model->getAllByHotAsc();
-           $getAllByBuyed = $this->model->getAllByBuyed(10,0);
-           $getAllProByDeal =  $this->model->getAllProByDeal();
-           $getMenuParent = $this->model->getMenuParent();
-		   $getMenuParentdoc = $this->model->getMenuParentdoc();
-		   
-           $page_title ="Trang Chủ - Lê Quân Sneaker";
-           $viewFile = "views/home.php";
-           require_once "views/layout.php";  
-        }
-   
-        function product()
-        {
-			
-         $getMenuParent = $this->model->getMenuParent();
-		 if(isset($_GET['maloai'])){
-			 $getCateFromId = $this->model->getCateFromId($_GET['maloai']);
-		 }else{
-			$getCateFromId = $this->model->getCateFromId(2);
-		 }
-         
-         $getAllProDesc = $this->model->getAllProDesc(3,0);
-         
-         $getAllProDescoffset = $this->model->getAllProDesc(3,3);
-         $getAllByBuyed = $this->model->getAllByBuyed(3,0);
-         $etAllByBuyedoffset = $this->model->getAllByBuyed(3,3);
-		 $PageNum=1;
-         if(isset($_GET['Page'])==true) $PageNum = $_GET['Page'];
-         settype($maLoai,"int");
-         settype($PageNum,"int");
-   
-         if($PageNum<=0) $PageNum = 1;
-		
-       
-   
-         $page_title ="Danh Sách Sản Phẩm - Lê Quân Sneaker";
-         $viewFile = "views/product.php";
-         require_once "views/layout.php";  
-        }
-		
-        function detail()
-        {
-           $getAllProSpecial = $this->model->getAllProSpecial();
-           $getMenuParent = $this->model->getMenuParent();
-           
-           $slug = $_GET['slug'];
-         
-           $sp = $this->model->getOnePro($slug);   
+require_once "../system/database.php";
+require_once "../lib/myfunctions.php";
+require_once "models/home.php";
+require_once "models/user.php";
 
-		   $page_title =$sp['name']." - Lê Quân Sneaker";
-           $viewFile = "views/Product-Detail.php";     
-           require_once "views/layout.php";  
+class Home
+{
+    public function __construct()
+    {
+        $this->model = new model_home();
+        $this->modelUser = new Model_user();
+        $this->lib = new lib();
+
+        $act = "home";
+        if (isset($_GET["act"]) == true) {
+            $act = $_GET["act"];
         }
-		
-	
+
+        switch ($act) {
+            case "home": 
+                $this->home();
+                break;
+            case "productdetail": 
+                $this->productdetail();
+                break;
+            case "about": 
+                $this->about();
+                break;
+            case "products": 
+                $this->products();
+                break;
+            case "student": 
+                $this->student();
+                break;
+            case "teacher": 
+                $this->teacher();
+                break;            
+            case "parent": 
+                $this->parent();
+                break;
+            case "blog": 
+                $this->blog();
+                break;    
+            case "blogdetail": 
+                $this->blogdetail();
+                break;           
+            case "contact": 
+                $this->contact();
+                break;
+            
+        }
+
+    }
+    public function home()
+    {
+        $page_title   = "Trang Chủ - EngBook";
+        $viewFile     = "views/home.php";
+        require_once "views/layout.php";
+    }
+
+    public function about() {
+        $page_title   = "Giới Thiệu - EngBook";
+        $viewFile     = "views/about.php";
+        $css          = "about.css";
+        $namePage     = "Giới Thiệu";
+        require_once "views/layout.php";
+    }
+
+    public function products() {
+        $page_title   = "Sản Phẩm - EngBook";
+        $viewFile     = "views/product-list.php";
+        $namePage     = "Sản Phẩm";
+
+        $categories   = $this->model->getCategories();
+        $listProduct  = $this->model->getProducts();
+        require_once "views/layout.php";
+    }
+
+    public function productdetail($slug) {
+        // getOnePro($slug);
+
+        $page_title   = "Sản Phẩm Chi Tiết - EngBook";
+        $viewFile     = "views/product-detail.php";
+        $css          = "course-detail.css";
+        $js           = "course-detail.js";
+        $namePage     = "Sản Phẩm";
+        require_once "views/layout.php";
+    }
+
+    public function student() {
+        $page_title   = "Học Sinh - EngBook";
+        $viewFile     = "views/student.php";
+        $css          = "student.css";        
+        $namePage     = "Học Sinh";        
+        require_once "views/layout.php";
+    }
+
+    public function teacher() {
+        $page_title   = "Giáo Viên - EngBook";
+        $viewFile     = "views/teacher.php";
+        $css          = "teacher.css";    
+        $js           = "teacher.js";    
+        $namePage     = "Giáo Viên";                
+        require_once "views/layout.php";
+    }
+
+    public function parent() {
+        $page_title   = "Phụ Huynh - EngBook";
+        $viewFile     = "views/parent.php";          
+        $namePage     = "Phụ Huynh";
+        require_once "views/layout.php";
+    }
+
+    public function blog() {
+        $page_title   = "Tin Tức - EngBook";
+        $viewFile     = "views/blog-list.php";          
+        $namePage     = "Tin Tức";
+        require_once "views/layout.php";
+    }
+
+    public function blogdetail() {
+        $page_title   = "Tin Tức - EngBook";
+        $viewFile     = "views/blog-detail.php";     
+        $css          = "blog-detail.css";         
+        $namePage     = "Tin Tức";
+        require_once "views/layout.php";
+    }
+
+    public function contact() {
+        $page_title   = "Liên Hệ - EngBook";
+        $viewFile     = "views/contact.php";     
+        $css          = "contact.css";         
+        $namePage     = "Liên Hệ";
+        require_once "views/layout.php";
+    }
+
 }
-   ?>

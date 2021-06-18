@@ -1,6 +1,6 @@
 <?php
 define('HOST_DB','localhost');
-define('NAME_DB','project_chay');
+define('NAME_DB','book');
 define('USER_DB','root');
 define('PASS_DB','');
 define('ROOT_URL','/book');
@@ -11,7 +11,6 @@ define('PATH_IMG_ADMIN','../uploads/');
 define('PAGE_SIZE',10);
 define('PAGE_SIZE_PRO',20);
 define('PATH_IMG_SITE','../uploads/');
+define('PATH_URL', '/book/site/views/assets/');
 session_start();
-
-
 ?>

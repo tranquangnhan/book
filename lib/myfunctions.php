@@ -25,7 +25,7 @@ class lib{
                 $uploadfile = 'upload file không thành công';
             }
             if($i <(count($nameimg) -1)){
-                $imgupload .= $nameimg[$i].',';
+                $imgupload .= $nameimg[$i].',';                
             }else{
                 $imgupload .= $nameimg[$i];
             }  
