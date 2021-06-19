@@ -25,7 +25,7 @@ class Home
                 $this->home();
                 break;
             case "productdetail": 
-                $this->productdetail();
+                // $this->productdetail();
                 break;
             case "about": 
                 $this->about();
@@ -85,6 +85,8 @@ class Home
     }
 
     public function productdetail() {
+        // getOnePro($slug);
+
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";
         $css          = "product-detail.css";

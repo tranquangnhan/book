@@ -7,10 +7,10 @@ class Model_product extends Model_db{
         return $this->result1(0,$sql);
     }
    
-    public function addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate)
+    public function addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate)
     {
-        $sql = "INSERT INTO book(name, slug, img, type, class, author, publishing, year, description, link, idcate) VALUE(?,?,?,?,?,?,?,?,?,?,?)";
-        return $this->getLastId($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
+        $sql = "INSERT INTO book(name, slug, img, type, class, author, publishing, year, description, link,part, idcate) VALUE(?,?,?,?,?,?,?,?,?,?,?,?)";
+        return $this->getLastId($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate);
     }
 
     function deleteProduct($id)
@@ -19,15 +19,15 @@ class Model_product extends Model_db{
         return $this->exec1($sql,$id);
     }
     
-    function editProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id){
+    function editProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate, $id){
         if($imgs == "")
         {
-            $sql = "UPDATE book SET  name = ?, slug = ?, type = ?, class = ?, author = ?, publishing = ?, year = ?, description = ?, link = ?, idcate = ? WHERE id=?";
-            return $this->exec1($sql, $name, $slug, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id);
+            $sql = "UPDATE book SET  name = ?, slug = ?, type = ?, class = ?, author = ?, publishing = ?, year = ?, description = ?, link = ?, part=? , idcate = ? WHERE id=?";
+            return $this->exec1($sql, $name, $slug, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate, $id);
         }else
         {
-            $sql = "UPDATE book SET name = ?, slug = ?, img= ?, type = ?, class = ?, author = ?, publishing = ?, year = ?, description = ?, link = ?, idcate = ? WHERE id=?";
-            return $this->exec1($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id);
+            $sql = "UPDATE book SET name = ?, slug = ?, img= ?, type = ?, class = ?, author = ?, publishing = ?, year = ?, description = ?, link = ?, part=? , idcate = ? WHERE id=?";
+            return $this->exec1($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate, $id);
         }
     }
 

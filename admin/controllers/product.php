@@ -54,7 +54,6 @@ class Product
 
         $ProductList = $this->model->GetProductList($CurrentPage);
         $Pagination = $this->model->Page($TotalProduct, $CurrentPage);
-        // echo $Pagination; exit();
         $page_title = "Danh sách nhà sản xuất";
         $page_file = "views/product_index.php";
         require_once "views/layout.php";
@@ -84,6 +83,7 @@ class Product
             $link = $_POST['link'];
             $description = $_POST['description'];
             $img = $_FILES['img'];
+            $part = $_POST['part'];
             $slug = $this->lib->slug($name);
 
             settype($idcate, "int");
@@ -132,12 +132,12 @@ class Product
                     settype($id, "int");
                     
                     $slug = $slug . '-' . $id;
-                    $this->edit($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id);
+                    $this->edit($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate, $id);
 
                 } else {                    
                     $slug = $slug . '-' . ($this->model->getLastestIdProduct() + 1);
 
-                    $this->store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
+                    $this->store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate);
                 }
             }
 
@@ -146,9 +146,9 @@ class Product
         require_once "views/layout.php";
     }
 
-    public function store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate)
+    public function store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate)
     {
-        $idLastBook = $this->model->addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
+        $idLastBook = $this->model->addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate);
         
         if($idLastBook != null) {
             echo "<script>alert('Thêm thành công')</script>";
@@ -162,9 +162,9 @@ class Product
         require_once "views/layout.php";
     }
 
-    public function edit($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id)
+    public function edit($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate, $id)
     {
-        if($this->model->editProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate, $id))
+        if($this->model->editProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate, $id))
         {
             echo "<script>alert('Sửa thành công')</script>";
             header("location: ?ctrl=product");
