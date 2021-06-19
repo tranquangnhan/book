@@ -713,4 +713,8 @@ class Model_home extends Model_db{
         $sql = "SELECT * FROM `book`";
         return $this->result1(0, $sql);
     }
+
+    function getProductsBySql($sql) {        
+        return $this->result1(0, $sql);
+    }
 }
