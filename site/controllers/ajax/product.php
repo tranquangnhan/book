@@ -40,7 +40,7 @@ require_once "../../../system/config.php";
             if (count($class) > 0) {
                 $sqlCheck = true;
                 if ($notOr == false) {
-                    $sql  .= ' OR ';
+                    $sql  .= ' AND ';
                 } else {
                     $notOr = false;
                 }
@@ -53,7 +53,7 @@ require_once "../../../system/config.php";
             if (count($idcate) > 0) {
                 $sqlCheck = true;
                 if ($notOr == false) {
-                    $sql  .= ' OR ';
+                    $sql  .= ' AND ';
                 } else {
                     $notOr = false;
                 }

@@ -153,8 +153,7 @@ function getDataByFilterOb(data, url) {
             } else {
                 var html = '<h3 class="text-center w-100 notice-h3">Không tìm thấy sản phẩm !</h3>';
                 $('.product-box').prepend(html);
-                $('.pagina-box').hide();
-                // Long
+                $('.pagina-box').hide();            
             }
         },
         error: function(e) {
