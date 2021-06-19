@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Danh mục</label><span style="color:red;"> (*)</span>
                                         <select class="form-control" name="idcate">                                            
@@ -73,15 +73,7 @@
                                         </select>
                                     </div>                                                
                                 </div>   
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="">Phần</label><span style="color:red;"> (*)</span>
-                                        <select class="form-control" name="part">                                            
-                                            <option value="1">Phần 1</option>
-                                            <option value="2">Phần 2</option>
-                                        </select>
-                                    </div>                                                
-                                </div>    
+          
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="">Class</label><span style="color:red;"> (*)</span>

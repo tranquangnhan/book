@@ -22,63 +22,63 @@ class Model_home extends Model_db{
     }
     function getAllProSpecial()
     {
-        $sql = "SELECT * FROM product ORDER BY view DESC LIMIT 10";
+        $sql = "SELECT * FROM book ORDER BY view DESC LIMIT 10";
         return $this->result1(0,$sql);
     }
     function getAllProByDeal(){
-        $sql = "SELECT * FROM product where discount > 0 ORDER BY RAND ( ) DESC LIMIT 10";
+        $sql = "SELECT * FROM book where discount > 0 ORDER BY RAND ( ) DESC LIMIT 10";
         return $this->result1(0,$sql);
     }
     function getAllByBuyed($limit,$offset){
-        $sql = "SELECT * FROM product ORDER BY id DESC LIMIT $offset,$limit";
+        $sql = "SELECT * FROM book ORDER BY id DESC LIMIT $offset,$limit";
         return $this->result1(0,$sql);
     }
     function getAllByHotAsc(){
-        $sql = "SELECT * FROM product WHERE hot=1 ORDER BY id ASC LIMIT 10";
+        $sql = "SELECT * FROM book WHERE hot=1 ORDER BY id ASC LIMIT 10";
         return $this->result1(0,$sql);
     } 
     function getAllProAsc($limit,$offset){
-        $sql = "SELECT * FROM product ORDER BY id DESC LIMIT $offset,$limit";
+        $sql = "SELECT * FROM book ORDER BY id DESC LIMIT $offset,$limit";
         return $this->result1(0,$sql);
     }
     function getAllProDesc($limit,$offset){
-        $sql = "SELECT * FROM product ORDER BY id DESC LIMIT $offset,$limit";
+        $sql = "SELECT * FROM book ORDER BY id DESC LIMIT $offset,$limit";
         return $this->result1(0,$sql);
     }
     function getHotPro($sosp=3){ 
-        $sql = "SELECT * FROM product WHERE AnHien=1 AND Hot=1 ORDER BY idDT DESC LIMIT 0, $sosp";
+        $sql = "SELECT * FROM book WHERE AnHien=1 AND Hot=1 ORDER BY idDT DESC LIMIT 0, $sosp";
         return $this->result1(0,$sql);
      }
      function getAllPro($sosp=4){ 
-        $sql = "SELECT * FROM product WHERE AnHien=1 ORDER BY idDT ASC LIMIT 0, $sosp";
+        $sql = "SELECT * FROM book WHERE AnHien=1 ORDER BY idDT ASC LIMIT 0, $sosp";
         return $this->result1(0,$sql);
      }
      function getAllNewPro($sosp=4){
-        $sql = "SELECT * FROM product WHERE AnHien=1 ORDER BY idDT DESC LIMIT 0, $sosp";
+        $sql = "SELECT * FROM book WHERE AnHien=1 ORDER BY idDT DESC LIMIT 0, $sosp";
         return $this->result1(0,$sql);
      }
      function getAllViewsPro($sosp=4){
-        $sql = "SELECT * FROM product WHERE AnHien=1  ORDER BY SoLanXem DESC LIMIT 0, $sosp";
+        $sql = "SELECT * FROM book WHERE AnHien=1  ORDER BY SoLanXem DESC LIMIT 0, $sosp";
         return $this->result1(0,$sql);
      }
      function getAllProSelling($sosp=4){
-        $sql = "SELECT * FROM product WHERE AnHien=1  ORDER BY SoLanMua DESC LIMIT 0, $sosp";
+        $sql = "SELECT * FROM book WHERE AnHien=1  ORDER BY SoLanMua DESC LIMIT 0, $sosp";
         return $this->result1(0,$sql);
      }
     function getOnePro($slug){   
-        $sql = "SELECT * FROM product WHERE 1 AND slug=?";
+        $sql = "SELECT * FROM book WHERE 1 AND slug=?";
         return $this->result1(1,$sql,$slug);
     }
     function getProById($id){   
-        $sql = "SELECT * FROM product WHERE id=?";
+        $sql = "SELECT * FROM book WHERE id=?";
         return $this->result1(1,$sql,$id);
     }
     function getProByBrand($brand,$hangcosan){   
-        $sql = "SELECT * FROM product WHERE Brand=? and cosan=? order by hot desc limit 10";
+        $sql = "SELECT * FROM book WHERE Brand=? and cosan=? order by hot desc limit 10";
         return $this->result1(0,$sql,$brand,$hangcosan);
     }
     function getProperty($slug){ 
-        $sql = "SELECT * FROM product WHERE slug = ?";
+        $sql = "SELECT * FROM book WHERE slug = ?";
         $kq =  $this->result1(1,$sql,$slug)['idDT'];
         $sql = "SELECT * FROM thuoctinhdt WHERE idDT=?";
         return $this->result1(1,$sql,$kq);
@@ -89,7 +89,7 @@ class Model_home extends Model_db{
       return $this->result1(0,$sql);
     }
     function getSamePro($slug){
-      $sql = "SELECT * FROM product WHERE slug != ? ORDER BY idDT DESC LIMIT 4";
+      $sql = "SELECT * FROM book WHERE slug != ? ORDER BY idDT DESC LIMIT 4";
       return $this->result1(0,$sql,$slug);
     }
     function getCouponCode($coupon){
@@ -133,14 +133,14 @@ class Model_home extends Model_db{
       foreach ($giohang as $motsp) {
         $img = PATH_IMG_SITE.$motsp[6];
         $name = $motsp[4];
-        $product_id = $motsp[0]; 
+        $book_id = $motsp[0]; 
         $size = $motsp[2];
         $mau = $motsp[3];
         $quantity = $motsp[1];
         $price = $motsp[5];
-        $sql = "INSERT INTO donhangchitiet(donhang_id,product_id,name_product,img_product,size,color,quantity,price) VALUE(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO donhangchitiet(donhang_id,book_id,name_book,img_book,size,color,quantity,price) VALUE(?,?,?,?,?,?,?,?)";
         
-        $kq =$this->exec1($sql,$idDH,$product_id,$name,$img,$size,$mau,$quantity,$price);
+        $kq =$this->exec1($sql,$idDH,$book_id,$name,$img,$size,$mau,$quantity,$price);
         
         }
 
@@ -149,12 +149,12 @@ class Model_home extends Model_db{
       }
    }
 
-   function getProductByIdPro($id){
-      $sql = "SELECT * FROM product WHERE idNSX = ?";
+   function getbookByIdPro($id){
+      $sql = "SELECT * FROM book WHERE idNSX = ?";
       return $this->result1(0,$sql,$id);
    }
 
-   function Page($TotalProduct, $CurrentPage,$PageSize,$BaseLink)
+   function Page($Totalbook, $CurrentPage,$PageSize,$BaseLink)
    {
 
        $LimitPage = $PageSize; // 5 sản phẩm 2 trang
@@ -175,7 +175,7 @@ class Model_home extends Model_db{
        $IsFirstButtonHidden = '';
        $IsPreviousButtonHidden = '';
 
-       $TotalPage = ceil($TotalProduct / $LimitPage); // tổng số page
+       $TotalPage = ceil($Totalbook / $LimitPage); // tổng số page
        
        if($CurrentPage == 1)
        {
@@ -268,7 +268,7 @@ class Model_home extends Model_db{
 
        return $PagedHTML.$NextButton.$LastButton;
    }
-   function PageNotCate($TotalProduct, $CurrentPage,$PageSize,$BaseLink)
+   function PageNotCate($Totalbook, $CurrentPage,$PageSize,$BaseLink)
    {
 
        $LimitPage = $PageSize; // 5 sản phẩm 2 trang
@@ -289,7 +289,7 @@ class Model_home extends Model_db{
        $IsFirstButtonHidden = '';
        $IsPreviousButtonHidden = '';
 
-       $TotalPage = ceil($TotalProduct / $LimitPage); // tổng số page
+       $TotalPage = ceil($Totalbook / $LimitPage); // tổng số page
        
        if($CurrentPage == 1)
        {
@@ -425,9 +425,9 @@ class Model_home extends Model_db{
     $sql ="SELECT  name,id,hangcosan FROM catalog where parent BETWEEN 129 AND 130 and style = 1 order by hangcosan,id";
     return  $this->result1(0,$sql);
    }
-   function countAllProduct($id)
+   function countAllbook($id)
    {
-        $sql ="SELECT count(*) AS sodong from catalog cate  inner join product pro on cate.id= pro.catalog_id
+        $sql ="SELECT count(*) AS sodong from catalog cate  inner join book pro on cate.id= pro.catalog_id
         ";
         $par = $this->getCateByid($id);
         
@@ -438,9 +438,9 @@ class Model_home extends Model_db{
         }   
         return $this->result1(1,$sql,$id)['sodong'];
    }
-   function countAllProductControl($id)
+   function countAllbookControl($id)
    {
-        $sql ="SELECT count(*) AS sodong from catalog cate  inner join product pro on cate.id= pro.catalog_id
+        $sql ="SELECT count(*) AS sodong from catalog cate  inner join book pro on cate.id= pro.catalog_id
         ";
         $par = $this->getCateByid($id);
         
@@ -452,16 +452,16 @@ class Model_home extends Model_db{
      
         return $this->result1(1,$sql,$id)['sodong'];
    }
-   function countAllProductControl2()
+   function countAllbookControl2()
    {
-        $sql ="SELECT count(*) AS sodong from catalog cate  inner join product pro on cate.id= pro.catalog_id
+        $sql ="SELECT count(*) AS sodong from catalog cate  inner join book pro on cate.id= pro.catalog_id
         ";
       
      
         return $this->result1(1,$sql)['sodong'];
    }
-   function GetProductListCosan($id,$slug,$CurrentPage){
-      $sql ="SELECT * from product where cosan=? and Brand=?
+   function GetbookListCosan($id,$slug,$CurrentPage){
+      $sql ="SELECT * from book where cosan=? and Brand=?
       ";
      
       if ($CurrentPage !== 0)
@@ -471,8 +471,8 @@ class Model_home extends Model_db{
       $sql .=" LIMIT ".($CurrentPage - 1) * PAGE_SIZE_PRO.", ".PAGE_SIZE_PRO;
       return $this->result1(0,$sql,$id,$slug);
     }
-    function GetProductListByloai($id,$idcatalog,$CurrentPage){
-        $sql ="SELECT * from product where catalog_id=?
+    function GetbookListByloai($id,$idcatalog,$CurrentPage){
+        $sql ="SELECT * from book where catalog_id=?
         ";
 
         $par = $this->getCateFromId($idcatalog);
@@ -502,9 +502,9 @@ class Model_home extends Model_db{
         
         return $kq;
       }
-    function GetProductList2($CurrentPage,$sortBy,$order)
+    function GetbookList2($CurrentPage,$sortBy,$order)
     {
-        $sql ="SELECT * from catalog cate  inner join product pro on cate.id= pro.catalog_id
+        $sql ="SELECT * from catalog cate  inner join book pro on cate.id= pro.catalog_id
         ";
   
         if ($CurrentPage !== 0)
@@ -523,7 +523,7 @@ class Model_home extends Model_db{
       }
 
   function addNewView($idsp){
-      $sql = "UPDATE product SET SoLanXem=SoLanXem+1 WHERE idDT = ?";
+      $sql = "UPDATE book SET SoLanXem=SoLanXem+1 WHERE idDT = ?";
       return $this->exec1($sql,$idsp);
   }
 
@@ -540,7 +540,7 @@ class Model_home extends Model_db{
   
   function getAllComment($slug){
       
-    $sql = "SELECT * FROM product WHERE slug = ?";
+    $sql = "SELECT * FROM book WHERE slug = ?";
     $kq =  $this->result1(1,$sql,$slug)['idDT'];
     $sql = "SELECT * FROM binhluan WHERE idDT = ? ORDER BY idDT DESC";
     return $this->result1(0,$sql,$kq);
@@ -594,7 +594,7 @@ class Model_home extends Model_db{
             return false;
         }
   }
-  function getProductFromIdBill($id){
+  function getbookFromIdBill($id){
       $sql ="SELECT idDH FROM donhang WHERE keybill =?";
       $kq = $this->result1(1,$sql,$id)['idDH'];
       if($kq){
@@ -605,15 +605,15 @@ class Model_home extends Model_db{
       }
   }
 //   function getIdProFromSlug($slug){
-//       $sql = "SELECT idDT FROM product WHERE slug=?";
+//       $sql = "SELECT idDT FROM book WHERE slug=?";
 //       return $this->result1(1,$sql,$slug)['idDT'];
 //   }
     function getCateByid($id){
         $sql ="SELECT parent from catalog where id=?";
         return $this->result1(1,$sql,$id);
     }
-    function showProductByCate($id){
-        $sql ="SELECT * from catalog cate  inner join product pro on cate.id= pro.catalog_id
+    function showbookByCate($id){
+        $sql ="SELECT * from catalog cate  inner join book pro on cate.id= pro.catalog_id
         ";
         $par = $this->getCateByid($id);
         echo $par['parent'];
@@ -640,6 +640,16 @@ class Model_home extends Model_db{
         return $this->result1(0,$sql);
     }
 
+    function getSlugById($id){
+        $sql = "SELECT slug FROM book WHERE id=?";
+        return $this->result1(1,$sql,$id)['slug'];
+    }
+
+    function getSlugByPart($part){
+        $sql = "SELECT slug FROM book WHERE part=?";
+        return $this->result1(1,$sql,$part)['slug'];
+    }
+
 
 
 
@@ -651,12 +661,12 @@ class Model_home extends Model_db{
         return $this->result1(0, $sql);
     }
 
-    function getProducts() {
+    function getbooks() {
         $sql = 'SELECT * FROM `book` WHERE class = 1 OR type = 1 OR idcate = 1 ORDER BY id DESC limit 0, 9';
         return $this->result1(0, $sql);
     }
 
-    function getProductsBySql($sql) {        
+    function getbooksBySql($sql) {        
         return $this->result1(0, $sql);
     }
 }

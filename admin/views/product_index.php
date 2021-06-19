@@ -17,7 +17,7 @@
                                     <th width="55px">Loại</th>
                                     <th width="55px">Lớp</th>
                                     <th width="55px">Loại Sách</th>
-                                    <th width="5px">Nổi</th>
+                                    <th width="5px">Phần </th>
                                     <th width="5px">Xóa</th>
                                     <th width="5px">Sửa</th>
                                 </tr>
@@ -30,6 +30,7 @@
                                 // $anHien = ($row['AnHien']=='1') ? '<span class="badge badge-success">Hiện</span>': '<span class="badge badge-danger">Ẩn</span>';
                                 ($row['type']) == '1' ? $type = 'Học sinh' : $type = 'Giáo Viên';
                                 ($row['class']) == '0' ? $class = 'Mầm non' : $class = $row['class'];
+                                ($row['part']) != 0 ? $part = '<div class="btn btn-primary">phần 1</div>': $part= '<div class="btn btn-success">phần 2</div>';
                                 $linkProperty = '?ctrl=properties&act=edit&idedit=' . $row['id'];
                                 $linkDel = "'?ctrl=product&act=delete&id=" . $row['id'] . "'";
                                 $linkEdit = '?ctrl=product&act=edit&id=' . $row['id'];
@@ -47,7 +48,7 @@
                                         <td> ' . $type . '</td>
                                         <td> ' . $class . '</td>
                                         <td> ' . $categoryName . '</td>
-                                        <td> ' . $hot . '</td>
+                                        <td> ' . $part . '</td>
                                         <td><div  onclick="checkDelete(' . $linkDel . ')"  class="btn btn-danger" role="button"><i class="fa fa-trash"></i></div></td>
                                         <td><a href=""><a name="" id="" class="btn btn-primary" href="' . $linkEdit . '" role="button"><span class="mdi mdi-pencil"></span></a></a></a></td>
                                     </tr>';

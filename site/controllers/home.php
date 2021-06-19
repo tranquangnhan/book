@@ -25,7 +25,7 @@ class Home
                 $this->home();
                 break;
             case "productdetail": 
-                // $this->productdetail();
+                $this->productdetail();
                 break;
             case "about": 
                 $this->about();
@@ -77,12 +77,22 @@ class Home
         $js           = "product-list.js";
         $ajax         = "product-list.js";
         $categories   = $this->model->getCategories();
-        $listProduct  = $this->model->getProducts();
+        $listProduct  = $this->model->getbooks();
         require_once "views/layout.php";
     }
 
     public function productdetail() {
-        // getOnePro($slug);
+        $slug = $_GET['slug'];
+        $oneproduct = $this->model->getOnePro($slug);
+
+        $slugPart1 =  $oneproduct['slug'];
+        if($this->model->getSlugById($oneproduct['part']) ==''){
+            
+            $slugPart2 = $this->model->getSlugByPart($oneproduct['id']);
+        }else{
+            $slugPart2 = $this->model->getSlugById($oneproduct['part']);
+        }
+    
 
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";

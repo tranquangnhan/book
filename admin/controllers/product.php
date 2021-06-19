@@ -60,14 +60,13 @@ class Product
     }
     public function addNew()
     {
+        $categoryList = $this->modelCate->listRecords();
+        $productList = $this->model->listRecords();
         if (isset($_GET['id']) && ($_GET['act'] = 'product')) {
             $oneRecode = $this->model->getDetailProductById($_GET['id']);
-            $categoryList = $this->modelCate->listRecords();
-
             $page_title = "Sửa Sản Phẩm";
             $page_file = "views/product_edit.php";
         } else {
-            $categoryList = $this->modelCate->listRecords();
             $page_title = "Thêm Sách";
             $page_file = "views/product_add.php";
         }
@@ -83,7 +82,10 @@ class Product
             $link = $_POST['link'];
             $description = $_POST['description'];
             $img = $_FILES['img'];
-            $part = $_POST['part'];
+            if(isset($_GET['id']) && $_GET['id'] && $_POST['part'] !=0){
+                $checkIsHavePart = $this->model->checkIsHavePart($_GET['id']);
+            }
+
             $slug = $this->lib->slug($name);
 
             settype($idcate, "int");
@@ -119,10 +121,13 @@ class Product
                 $_SESSION['message'] = "Bạn chưa nhập năm";
             } else if ($publishing == "") {
                 $_SESSION['message'] = "Bạn chưa nhập nhà xuất bản";
+            }else if($checkIsHavePart>=1) {
+                $_SESSION['message'] = "Lỗi! Sản phẩm đang là phần 2 ";
             }
-
+                
+        
             if ($_SESSION['message']) {
-                header("location: ?ctrl=product&act=addnew");
+                header("location: ?ctrl=thongbao");
             } else {
                 if (isset($_SESSION['message'])) {
                     unset($_SESSION['message']);
@@ -130,14 +135,16 @@ class Product
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     settype($id, "int");
-                    
+                    $part = $_POST['part'];
+
                     $slug = $slug . '-' . $id;
+                    // echo $part;
                     $this->edit($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate, $id);
 
                 } else {                    
                     $slug = $slug . '-' . ($this->model->getLastestIdProduct() + 1);
 
-                    $this->store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate);
+                    $this->store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
                 }
             }
 
@@ -146,9 +153,9 @@ class Product
         require_once "views/layout.php";
     }
 
-    public function store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate)
+    public function store($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate)
     {
-        $idLastBook = $this->model->addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,  $part, $idcate);
+        $idLastBook = $this->model->addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
         
         if($idLastBook != null) {
             echo "<script>alert('Thêm thành công')</script>";
