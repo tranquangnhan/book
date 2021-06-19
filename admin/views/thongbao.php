@@ -38,7 +38,7 @@
                             <div class="card-body p-4">
 
                                 <div class="text-center">
-                                    <h3 class="mt-3 mb-2"><?=$_SESSION['message']?></h3>
+                                    <h3 class="mt-3 mb-2"><?php echo $_SESSION['message'];unset($_SESSION['message']);?></h3>
                                     <p class="text-muted mb-3">.</p>
 
                                     <a href="javascript:history.go(-1)" class="btn btn-danger waves-effect waves-light"><i class="fas fa-home mr-1"></i> Trở về trang trước</a>

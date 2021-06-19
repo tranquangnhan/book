@@ -155,7 +155,17 @@ class Home
     }
 
     public function productdetail() {
-        // getOnePro($slug);
+        $slug = $_GET['slug'];
+        $oneproduct = $this->model->getOnePro($slug);
+
+        $slugPart1 =  $oneproduct['slug'];
+        if($this->model->getSlugById($oneproduct['part']) ==''){
+            
+            $slugPart2 = $this->model->getSlugByPart($oneproduct['id']);
+        }else{
+            $slugPart2 = $this->model->getSlugById($oneproduct['part']);
+        }
+    
 
         $page_title   = "Sản Phẩm Chi Tiết - EngBook";
         $viewFile     = "views/product-detail.php";

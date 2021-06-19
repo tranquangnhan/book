@@ -84,10 +84,18 @@
                                 </div>    
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="">Phần</label><span style="color:red;"> (*)</span>
-                                        <select class="form-control" name="part">                                            
-                                            <option value="1" <?php if($oneRecode['part'] == 1 ) echo 'selected' ?>>Phần 1</option>
-                                            <option value="2" <?php if($oneRecode['part'] == 2 ) echo 'selected' ?>>Phần 2</option>
+                                        <label for="">Phần 2</label><span style="color:red;"> (*)</span>
+                                        <select class="form-control" name="part"> 
+                                            <option value="0" selected>Chọn phần 2</option>                                 
+                                            <?php 
+                                                foreach ($productList as $row) {
+                                                    if($row['id'] ==$oneRecode['part']){
+                                                        echo '<option selected value="'.$row['id'].'">'.$row['name'].'</option>';
+                                                    }else{
+                                                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                                                    }
+                                                }   
+                                            ?>
                                         </select>
                                     </div>                                                
                                 </div>  

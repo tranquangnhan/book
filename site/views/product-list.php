@@ -75,11 +75,11 @@
                     <?php foreach ($listProduct as $product) { ?>
                     <div class="col-md-4 product-item d-flex align-items-stretch ftco-animate">
                         <div class="project-wrap">
-                            <a href="<?=SITE_URL?>?act=productdetail&id=<?=$product['slug']?>" class="img" style="background-image: url(<?=PATH_IMG_SITE?>/<?= $product['img']?>);">
+                            <a href="<?=SITE_URL?>?act=productdetail&slug=<?=$product['slug']?>" class="img" style="background-image: url(<?=PATH_IMG_SITE?>/<?= $product['img']?>);">
                                 <span class="price">Sách</span>
                             </a>
                             <div class="text p-4">
-                                <h3><a href="<?=SITE_URL?>?act=productdetail&id=<?=$product['slug']?>"><?= $product['name'] ?></a></h3>
+                                <h3><a href="<?=SITE_URL?>?act=productdetail&slug=<?=$product['slug']?>"><?= $product['name'] ?></a></h3>
                                 <p class="advisor">Tác Giả: <span><?= $product['author'] ?></span></p>
                             </div>
                         </div>

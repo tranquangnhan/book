@@ -9,17 +9,17 @@
                                 <div class="col-md-6 d-flex">
                                     <div class="d-flex about-wrap">
                                         <div class="imgbig-detail d-flex align-items-center justify-content-center"
-                                            style="background-image:url(<?=PATH_URL?>images/book-shs-7.png);">
+                                            style="background-image:url(<?=PATH_IMG_SITE.explode(',',$oneproduct['img'])[0]?>);">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-md-5 py-5">
                                     <div class="row justify-content-start pb-3">
                                         <div class="col-md-12 heading-section ftco-animate">
-                                            <span class="subheading">NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM</span>
-                                            <h2 class="mb-4">Tiếng Anh 7</h2>
-                                            <p>Năm xuất bản: 2020</p>
-                                            <p>Tác giả: Hoàng Văn Vân (Tổng Chủ biên), Nguyễn Quốc Tuấn (Chủ biên)
+                                            <span class="subheading"><?=$oneproduct['publishing']?></span>
+                                            <h2 class="mb-4"><?=$oneproduct['name']?></h2>
+                                            <p>Năm xuất bản: <?=$oneproduct['year']?></p>
+                                            <p>Tác giả: <?=$oneproduct['author']?>
                                             </p>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-success dropdown-toggle"
@@ -28,10 +28,11 @@
                                                     Chọn Tập
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">Tập 1</a>
-                                                    <a class="dropdown-item" href="#">Tập 2</a>
+
+                                                    <a class="dropdown-item" href="<?=ROOT_URL?>/site/?act=productdetail&slug=<?=$slugPart1?>">Tập 1</a>
+                                                    <a class="dropdown-item" href="<?=ROOT_URL?>/site/?act=productdetail&slug=<?=$slugPart2?>">Tập 2</a>
                                                 </div>
-                                                <a href="#" class="mx-2"><button type="button"
+                                                <a href="<?=$oneproduct['link']?>" class="mx-2"><button type="button"
                                                         class="btn btn-primary">edubook.com.vn</button></a>
                                             </div>
                                         </div>
@@ -69,24 +70,7 @@
                                 </div>
                             </div>
                             <br><br>
-                            <p>&emsp;&emsp;Tiếng Anh 7, Tập Một được Nhà xuất bản Giáo dục Việt Nam tổ chức biên
-                                soạn theo Chương trình Giáo dục phổ thông môn Tiếng Anh thí điểm cấp Trung học cơ sở
-                                do Bộ Giáo dục và Đào tạo ban hành theo Quyết định số 01/QĐ-BGDĐT ngày 03 tháng 01
-                                năm 2012, tiếp theo Tiếng Anh 6. Sách được biên soạn theo đường hướng giao tiếp,
-                                giúp học sinh sử dụng ngữ liệu (ngữ âm, từ vựng, ngữ pháp) để phát triển năng lực
-                                giao tiếp bằng tiếng Anh thông qua bốn kĩ năng nghe, nói, đọc và viết, trong đó, ưu
-                                tiên phát triển hai kĩ năng nghe và nói. Trong Tiếng Anh 7, Tập Một, việc học là
-                                trung tâm, học sinh là chủ thể của quá trình dạy học, trong đó tâm lí lứa tuổi của
-                                học sinh Trung học cơ sở, các đặc điểm văn hoá của Việt Nam và của các nước trên thế
-                                giới, đặc biệt là của các nước nói tiếng Anh, được coi trọng.
-                                Tiếng Anh 7, Tập một được biên soạn xoay quanh hai chủ điểm (Theme) gần gũi với học
-                                sinh: Our Communities và Our Heritage. Mỗi chủ điểm được chia thành ba đơn vị bài
-                                học (Unit) tương ứng với ba chủ đề (Topic) của chương trình. Sau mỗi chủ điểm là một
-                                bài ôn (Review) tập trung vào kiến thức ngôn ngữ và kĩ năng ngôn ngữ học sinh đã
-                                được học và rèn luyện.
-                                Tiếng Anh 7, Tập một được biên soạn trên cơ sở những kinh nghiệm thực tiễn của việc
-                                dạy tiếng Anh Trung học cơ sở ở Việt Nam với sự hợp tác chặt chẽ về chuyên môn và kĩ
-                                thuật của Tập đoàn Xuất bản Giáo dục Pearson.</p>
+                            <p><?=addslashes($oneproduct['description'])?></p>
                             <hr>
                             <div class="kind">
                                 <div class="detail-tittle">

@@ -3,14 +3,14 @@
 class Model_product extends Model_db{
     function listRecords() 
     {
-        $sql = "SELECT * FROM product order by id";
+        $sql = "SELECT * FROM book order by id";
         return $this->result1(0,$sql);
     }
    
-    public function addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate)
+    public function addNewProduct($name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate)
     {
-        $sql = "INSERT INTO book(name, slug, img, type, class, author, publishing, year, description, link,part, idcate) VALUE(?,?,?,?,?,?,?,?,?,?,?,?)";
-        return $this->getLastId($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link,$part, $idcate);
+        $sql = "INSERT INTO book(name, slug, img, type, class, author, publishing, year, description, link, idcate) VALUE(?,?,?,?,?,?,?,?,?,?,?)";
+        return $this->getLastId($sql, $name, $slug, $imgs, $type, $class, $author, $publishing, $year, $description, $link, $idcate);
     }
 
     function deleteProduct($id)
@@ -153,5 +153,10 @@ class Model_product extends Model_db{
     function countProductByIdcate($id) {
         $sql = "SELECT count(*) AS sodong FROM book where idcate = ?";
         return $this->result1(1,$sql, $id)['sodong'];
+    }
+
+    function checkIsHavePart($id){
+        $sql ="SELECT count(*) AS soluong  FROM book WHERE part = ?";
+        return $this->result1(1,$sql, $id)['soluong'];
     }
 }
