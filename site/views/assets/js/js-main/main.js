@@ -294,3 +294,172 @@ $('.show-option').click(function (e) {
         $('div[data-show-op="'+ numActive +'"]').removeClass('option-active');        
     } 
 });
+
+
+
+//////////// code phân trang //////////
+
+function paginationItemHtml(i, active) {
+    var html = `
+        <li class="` + active + `"><a href="javascript:void(0)" onclick="movePage(`+ i +`)" data-item="` + i + `" class="pagination-item">` + i + `</a></li>
+    `;
+
+    return html;
+}
+
+function paginationItemHtmlFirst(html) {
+    html += paginationItemHtml(1, '');                
+    html += paginationItemHtml(2, '');
+    html += '<li><span data-item="near-start">...</span></li>';
+
+    return html;
+}
+
+function removeAndAddNewLi(html) {
+    $('.page-list li').remove();
+    $('.page-list').append(html); 
+}
+
+function paginationItemHtmlLast(html, pageNumber) {
+    html += '<li><span>...</span></li>';
+    html += paginationItemHtml(pageNumber - 1, '');                
+    html += paginationItemHtml(pageNumber, '');
+
+    return html;
+}
+
+var pageNumber = $('.pageNumber').val();
+pageNumber     = parseInt(pageNumber);
+var pageCur = 1;
+
+function moveNext() {
+    pageCur++;
+    if (pageCur <= pageNumber) {
+        renderPage(pageCur);
+    } else {
+        pageCur = 1;
+        renderPage(pageCur);
+    }
+}
+
+function moveBack() {
+    pageCur--;
+    if (pageCur < 1) {
+        pageCur = pageNumber;
+        renderPage(pageCur);
+    } else {
+        renderPage(pageCur);
+    }
+}
+
+function movePage(_pageCur) {
+    pageCur = _pageCur;
+    renderPage(pageCur);
+}
+
+function renderPage(pageCur) {
+    var html = '';
+    var pageNum = pageCur;
+
+    if (pageNum > 5) {
+        html += paginationItemHtml(1, '');
+        html += paginationItemHtml(2, '');
+        html += '<li><span data-item="near-end">...</span></li>';
+        for (let i = pageNum - 2; i <= pageNum -1; i++) {             
+            html += paginationItemHtml(i, '');
+        }
+    } else if (pageNum > 1) {
+        for (let i = 1; i < pageNum; i++) {             
+            html += paginationItemHtml(i, '');
+        }
+    }
+    
+    html += paginationItemHtml(pageNum, 'active');
+    pageNum++;
+    var pageNext2 = pageNum + 1;
+    if (pageNext2 > pageNumber) {
+        pageNext2 = pageNumber;
+    }
+
+    for (pageNum; pageNum <= pageNext2; pageNum++) {             
+        html += paginationItemHtml(pageNum, '');              
+    }
+    
+    if (pageNum < pageNumber - 1) {
+        html += '<li><span data-item="near-end">...</span></li>';
+        html += paginationItemHtml(pageNumber - 1, '');
+        html += paginationItemHtml(pageNumber, '');
+    } else {
+        for (pageNum; pageNum <= pageNumber; pageNum++) {             
+            html += paginationItemHtml(pageNum, '');              
+        }
+    }   
+
+    obj.getData(pageCur);
+    removeAndAddNewLi(html);
+}
+
+//////////// code phân trang //////////
+
+var obj = {
+    url: '',
+    filterOb: '',
+    getData: function(form) {
+        console.log(form);
+        goToByScroll('nav-chil');
+        if ($('.ftco-loader').hasClass('show') == false) {
+            $('.product-box .product-item').remove();
+            $('.ftco-loader').addClass('show');    
+        }
+    
+        clearTimeout(timeRequest);
+    
+        timeRequest = setTimeout(
+            function() { 
+                setDataAndRequest(obj.filterOb, form, obj.url);                        
+            }, 600);    
+
+    },
+
+    renderPage: function() {
+
+    }
+};
+
+function goToByScroll(id) {
+    // Remove "link" from the ID
+    id = id.replace("link", "");
+    // Scroll
+    $('html,body').animate({
+        scrollTop: $("#" + id).offset().top
+    }, 50);
+}
+
+function reloadPage() {    
+    var html = '';
+    if (pageNumber <= 6) {
+        for (let i = 1; i < pageNumber + 1; i++) {
+            if (i == 1) {
+                html += paginationItemHtml(i, 'active');
+            } else {
+                html += paginationItemHtml(i, '');
+            }
+        }
+    } else {
+        for (let i = 1; i < pageNumber + 1; i++) {
+            if (i < 4) {
+                if (i == 1) {
+                    html += paginationItemHtml(i, 'active');
+                } else {
+                    html += paginationItemHtml(i, '');
+                }
+            }            
+        }
+
+        if (pageNumber > 6) {
+            html = paginationItemHtmlLast(html, parseInt(pageNumber));            
+        }        
+    }
+    
+    removeAndAddNewLi(html);
+}

@@ -659,4 +659,13 @@ class Model_home extends Model_db{
     function getProductsBySql($sql) {        
         return $this->result1(0, $sql);
     }
+
+    function getAmountProducts() {
+        $sql = 'SELECT count(*) AS sodong FROM `book` WHERE class = 1 OR type = 1 OR idcate = 1 ORDER BY id DESC';
+        return $this->result1(1, $sql)['sodong'];
+    }
+
+    function getAmountProduct($sql) {        
+        return $this->result1(0, $sql);
+    }
 }

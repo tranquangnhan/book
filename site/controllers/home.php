@@ -71,13 +71,16 @@ class Home
     }
 
     public function products() {
-        $page_title   = "Sản Phẩm - EngBook";
-        $viewFile     = "views/product-list.php";
-        $namePage     = "Sản Phẩm";
-        $js           = "product-list.js";
-        $ajax         = "product-list.js";
-        $categories   = $this->model->getCategories();
-        $listProduct  = $this->model->getProducts();
+        $page_title     = "Sản Phẩm - EngBook";
+        $viewFile       = "views/product-list.php";
+        $namePage       = "Sản Phẩm";
+        $js             = "product-list.js";
+        $ajax           = "product-list.js";
+        $categories     = $this->model->getCategories();
+        $listProduct    = $this->model->getProducts();
+        $AmountProduct  = $this->model->getAmountProducts();
+        $limitItem      = 9;
+        $pageNumber     = ceil($AmountProduct / $limitItem);
         require_once "views/layout.php";
     }
 
