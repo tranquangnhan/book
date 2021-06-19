@@ -12621,7 +12621,7 @@ h5,
 }
 
 .hero-wrap.hero-wrap-2 {
-    height: 600px;
+    height: 420px;
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
@@ -12653,7 +12653,7 @@ h5,
 }
 
 .hero-wrap.hero-wrap-2 .slider-text {
-    height: 600px;
+    height: 420px;
 }
 
 .hero-wrap.hero-wrap-3 .slider-text-2 {
@@ -12673,7 +12673,7 @@ h5,
 
 .slider-text h1 {
     font-size: 50px;
-    color: #fff;
+    color: #000000f0;
     line-height: 1.2;
     font-weight: 700;
 }
@@ -12725,15 +12725,15 @@ h5,
 }
 
 .slider-text .breadcrumbs span {
-    color: rgba(255, 255, 255, 0.8);
+    color: #000000d3;
 }
 
 .slider-text .breadcrumbs span i {
-    color: rgba(255, 255, 255, 0.8);
+    color: #000000d3;
 }
 
 .slider-text .breadcrumbs span a {
-    color: white;
+    color: #000000d3;
 }
 
 .slider-text .breadcrumbs span a:hover,

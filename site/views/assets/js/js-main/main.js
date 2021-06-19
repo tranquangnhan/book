@@ -358,45 +358,47 @@ function movePage(_pageCur) {
 }
 
 function renderPage(pageCur) {
-    var html = '';
-    var pageNum = pageCur;
+    if (pageNumber > 1) {    
+        var html = '';
+        var pageNum = pageCur;
 
-    if (pageNum > 5) {
-        html += paginationItemHtml(1, '');
-        html += paginationItemHtml(2, '');
-        html += '<li><span data-item="near-end">...</span></li>';
-        for (let i = pageNum - 2; i <= pageNum -1; i++) {             
-            html += paginationItemHtml(i, '');
+        if (pageNum > 5) {
+            html += paginationItemHtml(1, '');
+            html += paginationItemHtml(2, '');
+            html += '<li><span data-item="near-end">...</span></li>';
+            for (let i = pageNum - 2; i <= pageNum -1; i++) {             
+                html += paginationItemHtml(i, '');
+            }
+        } else if (pageNum > 1) {
+            for (let i = 1; i < pageNum; i++) {             
+                html += paginationItemHtml(i, '');
+            }
         }
-    } else if (pageNum > 1) {
-        for (let i = 1; i < pageNum; i++) {             
-            html += paginationItemHtml(i, '');
+        
+        html += paginationItemHtml(pageNum, 'active');
+        pageNum++;
+        var pageNext2 = pageNum + 1;
+        if (pageNext2 > pageNumber) {
+            pageNext2 = pageNumber;
         }
-    }
-    
-    html += paginationItemHtml(pageNum, 'active');
-    pageNum++;
-    var pageNext2 = pageNum + 1;
-    if (pageNext2 > pageNumber) {
-        pageNext2 = pageNumber;
-    }
 
-    for (pageNum; pageNum <= pageNext2; pageNum++) {             
-        html += paginationItemHtml(pageNum, '');              
-    }
-    
-    if (pageNum < pageNumber - 1) {
-        html += '<li><span data-item="near-end">...</span></li>';
-        html += paginationItemHtml(pageNumber - 1, '');
-        html += paginationItemHtml(pageNumber, '');
-    } else {
-        for (pageNum; pageNum <= pageNumber; pageNum++) {             
+        for (pageNum; pageNum <= pageNext2; pageNum++) {             
             html += paginationItemHtml(pageNum, '');              
         }
-    }   
+        
+        if (pageNum < pageNumber - 1) {
+            html += '<li><span data-item="near-end">...</span></li>';
+            html += paginationItemHtml(pageNumber - 1, '');
+            html += paginationItemHtml(pageNumber, '');
+        } else {
+            for (pageNum; pageNum <= pageNumber; pageNum++) {             
+                html += paginationItemHtml(pageNum, '');              
+            }
+        }   
 
-    obj.getData(pageCur);
-    removeAndAddNewLi(html);
+        obj.getData(pageCur);
+        removeAndAddNewLi(html);
+    }
 }
 
 //////////// code phân trang //////////
@@ -427,9 +429,7 @@ var obj = {
 };
 
 function goToByScroll(id) {
-    // Remove "link" from the ID
     id = id.replace("link", "");
-    // Scroll
     $('html,body').animate({
         scrollTop: $("#" + id).offset().top
     }, 50);
@@ -437,6 +437,7 @@ function goToByScroll(id) {
 
 function reloadPage() {    
     var html = '';
+    pageNumber = parseInt(pageNumber);
     if (pageNumber <= 6) {
         for (let i = 1; i < pageNumber + 1; i++) {
             if (i == 1) {
@@ -463,3 +464,4 @@ function reloadPage() {
     
     removeAndAddNewLi(html);
 }
+

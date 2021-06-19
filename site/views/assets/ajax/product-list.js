@@ -1,16 +1,52 @@
+var level = $('.levelType').val();
 var firstIdCategory = $('.category').first().val(); 
 
-var filterOb = [
-    { 'type': ["1"] },
-    { 'class': ["0"] },
-    { 'category': [firstIdCategory] }
-]
+var filterOb = [];
+
+// level là các lớp
+// level 1 = 0 Mầm non
+// level 2 = 1, 2, 3, 4, 5 tiểu học
+// level 3 = 6, 7, 8, 9 THCS
+// level 4 = 10, 11, 12 THPT
+// level 6 = mặc định
+if (level == 1) {
+    filterOb = [
+        { 'type': [] },
+        { 'class': ["0"] },
+        { 'category': [] }
+    ];
+} else if (level == 2) {
+    filterOb = [
+        { 'type': [] },
+        { 'class': ["1"] },
+        { 'category': [] }
+    ];
+} else if (level == 3) {
+    filterOb = [
+        { 'type': [] },
+        { 'class': ["6"] },
+        { 'category': [] }
+    ];
+} else if (level == 4) {
+    filterOb = [
+        { 'type': [] },
+        { 'class': ["10"] },
+        { 'category': [] }
+    ];
+} else {
+    var filterOb = [
+        { 'type': ["1"] },
+        { 'class': ["0"] },
+        { 'category': [firstIdCategory] }
+    ];
+}
 
 var checkReloadPage = false;
 
 var timeRequest;
 
 $('.filter').click(function (e) {
+    console.log(filterOb);
     checkReloadPage = true;
     if ($('.ftco-loader').hasClass('show') == false) {
         $('.product-box .product-item').remove();
@@ -95,25 +131,29 @@ function getDataByFilterOb(data, url) {
             console.log(response);
             if ($('.notice-h3')) {
                 $('.notice-h3').remove();
+                $('.pagina-box').show();
             }
             if ($('.ftco-loader').hasClass('show') == true) {
                 $('.ftco-loader').removeClass('show');        
             }
 
             if (response[1] > 0) {                
-                response[0].forEach(element => {                    
+                response[0].forEach(element => {    
+                    console.log(element);                
                     var html = htmlProductItem(element);
-                    $('.product-box').prepend(html);
+                    $('.product-box').append(html);
                 });
 
                 if (checkReloadPage == true) {
-                    pageNumber = (response[1] / 9);
+                    var page = (response[1] / 9);                    
+                    pageNumber = Math.ceil(page);
                     reloadPage();
                     checkReloadPage = false;
                 }
             } else {
                 var html = '<h3 class="text-center w-100 notice-h3">Không tìm thấy sản phẩm !</h3>';
                 $('.product-box').prepend(html);
+                $('.pagina-box').hide();
             }
         },
         error: function(e) {
@@ -149,7 +189,7 @@ function htmlProductItem(product) {
     var html = `
     <div class="col-md-4 d-flex product-item align-items-stretch ftco-animate fadeInUp ftco-animated">
         <div class="project-wrap">
-            <a href="?act=productdetail&id=` + product['slug'] + `" class="img" style="background-image: url(/book/site/views/assets/images/` + product['img'] + `);">
+            <a href="?act=productdetail&id=` + product['slug'] + `" class="img" style="background-image: url('../uploads/` + product['img'] + `');">
                 <span class="price">Sách</span>
             </a>
             <div class="text p-4">
