@@ -19,8 +19,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <ul>
-                                    <li><a href="#" class="big filter class" data-type="1">Mầm Non</a></li>
-                                    <li class="active"><a href="#" class="filter class" data-type="1">1</a></li>
+                                    <li class="active"><a href="#" class="big filter class" data-type="1">Mầm Non</a></li>
+                                    <li><a href="#" class="filter class" data-type="1">1</a></li>
                                     <li><a href="#" class="filter class" data-type="1">2</a></li>
                                     <li><a href="#" class="filter class" data-type="1">3</a></li>
                                     <li><a href="#" class="filter class" data-type="1">4</a></li>

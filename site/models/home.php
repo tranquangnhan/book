@@ -652,7 +652,7 @@ class Model_home extends Model_db{
     }
 
     function getProducts() {
-        $sql = 'SELECT * FROM `book` WHERE class = 1 OR type = 1 OR idcate = 1 ORDER BY id DESC limit 0, 9';
+        $sql = 'SELECT * FROM `book` WHERE class = 1 OR type = 0 OR idcate = 1 ORDER BY id DESC limit 0, 9';
         return $this->result1(0, $sql);
     }
 
@@ -661,11 +661,21 @@ class Model_home extends Model_db{
     }
 
     function getAmountProducts() {
-        $sql = 'SELECT count(*) AS sodong FROM `book` WHERE class = 1 OR type = 1 OR idcate = 1 ORDER BY id DESC';
+        $sql = 'SELECT count(*) AS sodong FROM `book` WHERE class = 0 OR type = 1 OR idcate = 1 ORDER BY id DESC';
         return $this->result1(1, $sql)['sodong'];
     }
 
     function getAmountProduct($sql) {        
         return $this->result1(0, $sql);
+    }
+
+    function getProductNoWhere() {
+        $sql = 'SELECT * FROM `book` ORDER BY id DESC limit 0, 9';
+        return $this->result1(0, $sql);
+    }
+
+    function getAmountAllProduct() {
+        $sql = 'SELECT count(*) AS sodong FROM `book`';
+        return $this->result1(1, $sql)['sodong'];
     }
 }

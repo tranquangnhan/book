@@ -2,7 +2,7 @@ var firstIdCategory = $('.category').first().val();
 
 var filterOb = [
     { 'type': ["1"] },
-    { 'class': ["1"] },
+    { 'class': ["0"] },
     { 'category': [firstIdCategory] }
 ]
 
@@ -92,7 +92,10 @@ function getDataByFilterOb(data, url) {
         processData: false,        
         data: data,
         success: function(response) { 
-            console.log(response); 
+            console.log(response);
+            if ($('.notice-h3')) {
+                $('.notice-h3').remove();
+            }
             if ($('.ftco-loader').hasClass('show') == true) {
                 $('.ftco-loader').removeClass('show');        
             }
@@ -109,7 +112,7 @@ function getDataByFilterOb(data, url) {
                     checkReloadPage = false;
                 }
             } else {
-                var html = '<h3 class="text-center w-100">Không tìm thấy sản phẩm !</h3>';
+                var html = '<h3 class="text-center w-100 notice-h3">Không tìm thấy sản phẩm !</h3>';
                 $('.product-box').prepend(html);
             }
         },

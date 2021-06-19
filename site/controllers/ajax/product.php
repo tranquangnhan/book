@@ -76,9 +76,12 @@ require_once "../../../system/config.php";
 
             if ($sqlCheck === true) {
                 $dataProducts = $model->getProductsBySql($sql);
-            } else {
-                // $dataProducts = $model->getProducts();
-                $dataProducts = '';
+            } else {                                           
+                $dataProducts = $model->getProductNoWhere();
+
+                $amountProduct = $model->getAmountAllProduct();
+                
+                // $dataProducts = '';
             }
 
             echo json_encode([$dataProducts, $amountProduct, $sql]);
