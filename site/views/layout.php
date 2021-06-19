@@ -92,10 +92,10 @@
                     <li class="nav-item dropdown-2 <?php echo ($viewFile == "views/product-list.php" || $viewFile == "views/product-detail.php") ? 'bar-active active' : '' ?>">
                         <a href="<?=SITE_URL?>?act=products" class="nav-link">Sản Phẩm</a>
                         <ul class="dropdown-hover-2 sanpham">
-                            <li><a href="mamnon.html">MẦM NON</a></li>
-                            <li><a href="tieuhoc.html">TIỂU HỌC</a></li>
-                            <li><a href="thcs.html">THCS</a></li>
-                            <li><a href="thpt.html">THPT</a></li>
+                            <li><a href="<?=SITE_URL?>?act=products&level=1">MẦM NON</a></li>
+                            <li><a href="<?=SITE_URL?>?act=products&level=2">TIỂU HỌC</a></li>
+                            <li><a href="<?=SITE_URL?>?act=products&level=3">THCS</a></li>
+                            <li><a href="<?=SITE_URL?>?act=products&level=4">THPT</a></li>
                         </ul>
                     </li>
 
@@ -126,7 +126,7 @@
     <!-- END nav -->
 
     <?php if ($viewFile != "views/home.php") {?>
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?=PATH_URL?>images/bg-header-about.jpg'); ">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?=PATH_URL?>images/banner.jpg'); ">
         <div class="container">
             <div class="row no-gutters slider-text align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">

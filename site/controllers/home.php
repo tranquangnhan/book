@@ -51,10 +51,53 @@ class Home
             case "contact": 
                 $this->contact();
                 break;
+            case "updateSlug":
+                $this->updateSlug();
+                break;
             
         }
 
     }
+
+    function updateSlug() {
+        $listBook = $this->model->getAllProduct();
+        foreach ($listBook as $book) {
+            $slug = $this->slug($book['name']);
+            $slug = $slug . '-' . $book['id'];
+            $id   = $book['id'];
+            $this->model->updateSlug($slug, $id);             
+        }        
+        exit();
+    }
+
+    function slug($str) {
+        $str = $this->stripUnicode($str);
+        $ar  = array("%", "$", "*", "&", "?", "!", "#", "@"); // % $ * & ? ! # @
+        $str = str_replace($ar, " ",$str);
+        $str = trim(preg_replace('/\s+/',' ', $str)); // \s+ là một hoặc nhiều khoảng trắng
+        $str = str_replace(" ", "-",$str);
+        return $str;
+    }
+
+    function stripUnicode($str){
+        if(!$str) return false;
+        $unicode = array(
+            'a'=>'á|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ|Á|À|Ả|Ã|Ạ|Ă|Ắ|Ằ|Ẳ|Ẵ|Ặ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ|A',
+            'd'=>'đ|Đ|D', 'f'=>'F', 's'=>'S', 'r'=>'R', 'w'=>'W', 'q'=>'Q', 't'=>'T', 'p'=>'P', 'g'=>'G',
+            'h'=>'H', 'j'=>'J', 'k'=>'K', 'l'=>'L', 'z'=>'Z', 'x'=>'X', 'c'=>'C', 'v'=>'V', 'b'=>'B', 'n'=>'N', 'm'=>'M',
+            'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ|E',
+            'i'=>'í|ì|ỉ|ĩ|ị|Í|Ì|Ỉ|Ĩ|Ị|I',
+            'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ|O',
+            'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự|U',
+            'y'=>'ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ|Y',
+        );
+        foreach($unicode as $khongdau=>$codau) {
+            $arr =explode("|",$codau);
+            $str = str_replace($arr,$khongdau,$str);
+        }
+        return $str;
+    }
+
     public function home()
     {
         $page_title   = "Trang Chủ - EngBook";
@@ -71,13 +114,43 @@ class Home
     }
 
     public function products() {
-        $page_title   = "Sản Phẩm - EngBook";
-        $viewFile     = "views/product-list.php";
-        $namePage     = "Sản Phẩm";
-        $js           = "product-list.js";
-        $ajax         = "product-list.js";
-        $categories   = $this->model->getCategories();
-        $listProduct  = $this->model->getbooks();
+        $page_title     = "Sản Phẩm - EngBook";
+        $viewFile       = "views/product-list.php";
+        $namePage       = "Sản Phẩm";
+        $js             = "product-list.js";
+        $ajax           = "product-list.js";
+        $categories     = $this->model->getCategories();
+        $idCateFirst    = $categories[0]['id'];
+
+        if (isset($_GET['level'])) {            
+            $level = $_GET['level'];
+                    
+            if ($level == 1) {
+                $listProduct   = $this->model->getProductsByClass('0');                
+                $AmountProduct = $this->model->countProductsByTypes('', '0', '');
+            } else if ($level == 2) {
+                $listProduct   = $this->model->getProductsByTypes('', '1', '');
+                $AmountProduct = $this->model->countProductsByTypes('1', '1', '');
+            } else if ($level == 3) {
+                $listProduct   = $this->model->getProductsByTypes('', '6', '');
+                $AmountProduct = $this->model->countProductsByTypes('', '6', '');
+            } else if ($level == 4) {
+                $listProduct   = $this->model->getProductsByTypes('', '10', '');
+                $AmountProduct = $this->model->countProductsByTypes('', '10', '');
+            }
+            
+        } else {
+            $level = 6;
+            $listProduct    = $this->model->getProducts();
+            $AmountProduct  = $this->model->getAmountProducts();
+        }
+
+        if ($AmountProduct == 0) {
+            $mess = '<h3 class="text-center w-100 notice-h3">Không tìm thấy sản phẩm !</h3>';
+        }
+
+        $limitItem      = 9;
+        $pageNumber     = ceil($AmountProduct / $limitItem);
         require_once "views/layout.php";
     }
 

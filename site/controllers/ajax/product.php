@@ -16,7 +16,11 @@ require_once "../../../system/config.php";
 
             $filter     = $_POST['filterOb'];
             $data       = json_decode($filter);
+
             $form       = $_POST['form'];
+            if ($form > 0) {
+                $form   = $form * 9;
+            }                        
 
             $type       = $data['0']->type;
             $class      = $data['1']->class;
@@ -59,16 +63,28 @@ require_once "../../../system/config.php";
                 $sql .= ')';
             }
 
+            if ($sqlCheck === true) {
+                $amountProduct = $model->getAmountProduct($sql);
+                $amountProduct = count($amountProduct);
+            } else {
+                $amountProduct = 0;
+            }
+            
+
             $sql .= ' ORDER BY id DESC limit ';
             $sql .= $form . ' , 9';
 
             if ($sqlCheck === true) {
                 $dataProducts = $model->getProductsBySql($sql);
-            } else {
-                $dataProducts = $model->getProducts();
+            } else {                                           
+                $dataProducts = $model->getProductNoWhere();
+
+                $amountProduct = $model->getAmountAllProduct();
+                
+                // $dataProducts = '';
             }
 
-            echo json_encode($dataProducts);
+            echo json_encode([$dataProducts, $amountProduct, $sql]);
             break;        
         default:
             # code...

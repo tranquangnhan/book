@@ -661,12 +661,56 @@ class Model_home extends Model_db{
         return $this->result1(0, $sql);
     }
 
-    function getbooks() {
-        $sql = 'SELECT * FROM `book` WHERE class = 1 OR type = 1 OR idcate = 1 ORDER BY id DESC limit 0, 9';
+    function getProducts() {
+        $sql = 'SELECT * FROM `book` WHERE class = 1 OR type = 0 OR idcate = 1 ORDER BY id DESC limit 0, 9';
         return $this->result1(0, $sql);
     }
 
     function getbooksBySql($sql) {        
+        return $this->result1(0, $sql);
+    }
+
+    function getAmountProducts() {
+        $sql = 'SELECT count(*) AS sodong FROM `book` WHERE class = 0 OR type = 1 OR idcate = 1';
+        return $this->result1(1, $sql)['sodong'];
+    }
+
+    function getAmountProduct($sql) {        
+        return $this->result1(0, $sql);
+    }
+
+    function getProductNoWhere() {
+        $sql = 'SELECT * FROM `book` ORDER BY id DESC limit 0, 9';
+        return $this->result1(0, $sql);
+    }
+
+    function getAmountAllProduct() {
+        $sql = 'SELECT count(*) AS sodong FROM `book`';
+        return $this->result1(1, $sql)['sodong'];
+    }
+
+    function getProductsByClass($class) {
+        $sql = 'SELECT * FROM `book` WHERE class in (?) ORDER BY id DESC limit 0, 9';
+        return $this->result1(0, $sql, $class);
+    }
+
+    function getProductsByTypes($type, $class, $idcate) {
+        $sql = 'SELECT * FROM `book` WHERE type in (?) OR class in (?) OR idcate in (?) ORDER BY id ASC limit 0, 9';
+        return $this->result1(0, $sql, $type, $class, $idcate);
+    }
+
+    function countProductsByTypes($type, $class, $idcate) {
+        $sql = 'SELECT count(*) AS sodong FROM `book` WHERE type in (?) OR class in (?) OR idcate in (?)';
+        return $this->result1(1, $sql, $type, $class, $idcate)['sodong'];
+    }
+
+    function updateSlug($slug, $id) {
+        $sql = "UPDATE `book` SET `slug` = ? WHERE id = ?";
+        return $this->exec1($sql, $slug, $id);
+    }
+
+    function getAllProduct() {
+        $sql = "SELECT * FROM `book`";
         return $this->result1(0, $sql);
     }
 }
